@@ -28,22 +28,21 @@ sudo useradd -m -s /bin/bash nombre_usuario
 
 2. Generamos un par de claves simétricas.
 
+> OJO!! 
+> Casi todos los comandos gpg que se ejecuten desde los usuarios apellido1 y apellido2 deben hacerse abriendo sesión en el entorno gráfico con dicho usuario y no con el usuario "isard": generación de claves, importación, exportación, cifrado y descifrado. Otros como --list-key pueden hacerse abriendo sesión en la consola>
+
 ```bash
 cabeza1@cabeza:~$ gpg --full-gen-key 
 cabeza1@cabeza:~$ gpg --gen-key //no pregunta opciones
 ```
 
-> NOTA
-> Si el usuario de consola no coincide con el usuario de la sesión gráfica debemos modificar el comando para que la clave la pida por consola:
-> gpg --pinentry-mode loopback --full-generate-key
+1. Nos preguntará, qué claves (y algoritmos queremos). Usaremos la opción 2. Son un juego de claves DSA para firmar y otro juego de claves Elgamal para cifrar. También preguntará por tamaño de la clave y tiempo de  validez. Tomaremos las opciones por defecto (2048 y nunca caduca).
 
-3. Nos preguntará, qué claves (y algoritmos queremos). Usaremos la opción 2. Son un juego de claves DSA para firmar y otro juego de claves Elgamal para cifrar. También preguntará por tamaño de la clave y tiempo de  validez. Tomaremos las opciones por defecto (2048 y nunca caduca).
+2. Después nos piden nuestro nombre y cuenta de correo. Debemos **usar datos reales** si queremos publicar las claves en internet asociadas a nuestro email.
 
-4. Después nos piden nuestro nombre y cuenta de correo. Debemos **usar datos reales** si queremos publicar las claves en internet asociadas a nuestro email.
-
-5. Las claves se guardan en un fichero cifrado mediante criptografía simétrica. Nos pedirá una cotraseña para el cifrado.
-6. El cifrado usa bytes aleatorios de la memoria del sistema por lo que puede tardar. Usar el navegador ayuda a hacerlo. No obstante en pocos instantes tendremos la clave creada.
-7. Podemos consultar las claves existentes:
+3. Las claves se guardan en un fichero cifrado mediante criptografía simétrica. Nos pedirá una cotraseña para el cifrado.
+4. El cifrado usa bytes aleatorios de la memoria del sistema por lo que puede tardar. Usar el navegador ayuda a hacerlo. No obstante en pocos instantes tendremos la clave creada.
+5. Podemos consultar las claves existentes:
 
 ```bash
 cabeza1@cabeza:~$ gpg --list-key 
@@ -99,7 +98,11 @@ gpg -v -a -o /tmp/mensaje.cifrado --encrypt --recipient  rafacabeza@iessantiagoh
 gpg --list-secret-keys --with-subkey-fingerprints
 ```
 
-5. Tras aceptar 
+5. Tras aceptar, podemos cambiar de usuario (GUI) y desencriptar:
+
+```bash
+gpg -o mensaje.claro --decrypt /tmp/mensaje.cifrado
+```
 
 ### Parte N. Borrar claves
 
