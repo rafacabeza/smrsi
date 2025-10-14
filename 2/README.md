@@ -344,10 +344,15 @@ gpg --encrypt --sign -r destinatario@example.com archivo.txt
 gpg --verify archivo.sig archivo.txt
 ```
 
-* **Inline signature**:
+* **Firma integrada**:
 
 ```bash
 gpg --verify archivo.txt.asc
+```
+* **Firma y cifrado**:
+
+```bash
+gpg -o archivo.claro  --decrypt archivo.gpg
 ```
 
 GPG mostrará:
