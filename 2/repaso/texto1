@@ -1,0 +1,41 @@
+Cuando alguien me pregunta qué estudiamos en SMR (Sistemas Microinformá-
+ticos y Redes), yo les planteo esta analogía: a muchos nos gustan los coches,
+pero conducirlos. Si aparece alguna avería, o tenemos que pasar una revisión,
+lo llevamos a un mecánico. Pues bien, en SMR formamos mecánicos de sistemas,
+ordenadores y redes.
+Este libro cubre el módulo de Seguridad Informática dentro del currículo de este
+ciclo formativo de Formación Profesional. Es un tema imprescindible, puesto que
+el mundo está digitalizado a todos los niveles: personal, empresarial y guber-
+namental. La era de la información, con Internet como principal exponente, ha
+mejorado el nivel de vida y la convivencia en este planeta. La información es
+poder, luego hay que protegerla.
+Todos los servicios avanzados que disfrutamos están implementados sobre sis-
+temas informáticos que utilizan ordenadores con un hardware y un software
+concretos, configurados adecuadamente y conectados entre sí y con los clientes
+mediantes redes de comunicaciones. Cualquiera de estos elementos es suscep-
+tible de ser atacado por un saboteador o, simplemente, fallar. La seguridad
+informática intenta evitarlo y, en caso de que ocurra, minimizar los daños para
+recuperar el servicio lo antes posible. Al usuario final no le importa si ha sido
+un ataque de un equipo de hackers contratado por la competencia o un simple
+apagón en la sala de servidores: él contaba con utilizar un servicio que nuestra
+empresa ha dejado de prestarle.
+Pero tenemos que asumir que la seguridad total es imposible. Ante cualquier ba-
+rrera física o lógica, el atacante buscará una forma de romperla o rodearla. Así
+ha sido hasta ahora y seguirá ocurriendo. Debemos tomar todas las medidas
+que estén a nuestro alcance y entren en nuestro presupuesto, pero su eficacia
+dependerá del interés que otros tengan por acceder a nuestros datos y sistemas.
+No se protege igual la caja de un banco que la hucha de un niño.
+Quiero agradecer la total colaboración material y humana por parte del Co-
+legio Valle del Miro, tanto de mis compañeros informáticos como, sobre todo,
+de la jefatura de estudios, la dirección y la presidencia del centro. Nos que-
+dan muchos años juntos, y los vamos a disfrutar.
+Muchas gracias también a la editorial McGraw-Hill, a mis dos editoras, Ariadna
+y Loly, y a mi revisor, Francisco Javier, por toda la paciencia que han derrocha-
+do conmigo.
+Pero este libro va dedicado a los que cada día me dan todo su amor y cariño:
+mi mujer, Tote; mis hijos, Daniel y Enrique; mis padres, Fabián y Amparo, y
+todos los miembros de mi familia.
+Volviendo a la analogía del coche, el piloto y el mecánico, tienen algo en co-
+mún, además del vehículo: les gusta su trabajo. Y encima les pagan por hacerlo.
+Si vas a trabajar ocho horas de lunes a viernes, durante muchos años, intenta
+que sea haciendo algo que te guste de verdad. Y fórmate para conseguirlo
