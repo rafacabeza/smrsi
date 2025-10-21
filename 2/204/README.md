@@ -43,7 +43,7 @@
 
 1. **Instalar el software DNIe** (middleware).
 2. **Instalar AutoFirma**.
-3. **Instalar certificados raíz** usando `certmgr.msc`.
+3. **Instalar certificados raíz** usando `certmgr.msc`, (certificate manager).
 4. **Configurar navegador Firefox:**  
    - Opciones → Privacidad & Seguridad → Certificados.
    - Cargar módulo PKCS#11.
@@ -58,7 +58,7 @@
 **Acción en directo:**
 
 1. Abrir navegador con DNIe insertado.
-2. Ir a la web oficial de prueba (ej: `dnielectronico.es` → Comprobación).
+2. Ir a la web oficial de prueba (ej: `[Verificar estado en FNMT](https://www.sede.fnmt.gob.es/certificados/persona-fisica/verificar-estado/)`).
 3. Seleccionar certificado, introducir PIN.
 4. Mostrar la información del titular (nombre, NIF, caducidad).
 
