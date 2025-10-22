@@ -10,10 +10,23 @@ Escribe lo que consideres y pega las capturas de pantalla que muestren tu trabaj
    1. Crea una carpeta dentro de "/home/isard/Documentos" llamada "201". Todo lo que hagas debe estar dentro de ella.
    2. Copia una página de wikipedia en un documento de texto creado con "gedit". Llámala "texto".
    3. Cífralo usando **gpg**. No especifiques ningún algoritmo.
+
+   ```bash
+   gpg -c archivo.txt
+   ```
+
    4. Muestra el contenido del fichero cifrado usando el comando "cat"
    5. Cierra la consola
    6. Abre una nueva consola y descifra el documento. Comprueba que has obtenido el mensaje descifrado.
+
+   ```bash
+   gpg -o archivo.txt -d archivo.txt.gpg
+   ```
+
    7. Descarga el fichero "201/mensaje.txt.gpg" que hay en la carpeta de los apuntes. Descífralo. La contraseña es una provincia aragonesa. 
+
+   ```bash
+   ```
    8. Muestra el contenido de dicho fichero usando "cat".
 3. Cifrado en linux de varios archivos.
    1. Asegurate de tener varios archivos en la carpeta 201. Al menos debe estar el fichero "texto" y el "mensaje" descifrado.
