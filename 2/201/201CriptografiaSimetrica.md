@@ -24,9 +24,6 @@ Escribe lo que consideres y pega las capturas de pantalla que muestren tu trabaj
    ```
 
    7. Descarga el fichero "201/mensaje.txt.gpg" que hay en la carpeta de los apuntes. Descífralo. La contraseña es una provincia aragonesa. 
-
-   ```bash
-   ```
    8. Muestra el contenido de dicho fichero usando "cat".
 3. Cifrado en linux de varios archivos.
    1. Asegurate de tener varios archivos en la carpeta 201. Al menos debe estar el fichero "texto" y el "mensaje" descifrado.
