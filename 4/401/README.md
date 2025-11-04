@@ -3,7 +3,7 @@
 Copia este texto en un documento de word u open office. 
 Realiza la práctica y toma capturas de pantalla explicativas que debes pegar en cada uno de los pasos realizados.
 
-# Guía: Configuración de RAID 1 en Ubuntu Server (VirtualBox)
+# PARTE 1: Configuración de RAID 1 en Ubuntu Server (VirtualBox)
 
 ## 1. Introducción
 
@@ -187,18 +187,17 @@ sudo mdadm --manage /dev/md0 --remove /dev/sdb1
 sudo mdadm --manage /dev/md0 --add /dev/sdb1
 ```
 
+## PARTE 2: Configuración de RAID 5 en Ubuntu.
 
-Perfecto 👍 Aquí tienes una **guía paso a paso en formato Markdown** para configurar un **RAID 1 por software en Windows 10**, ideal para acompañar tus prácticas del tema de **seguridad pasiva y almacenamiento redundante**.
+- Elabora una guía para configurar una uniad RAID 5 utilizando 3 discos duros.
+- Puedes usar chatgpt pero los pasos serán casi idénticos a los de RAID 1 y la herramienta que uses debe ser la misma: mdadm (además de fdisk, mkfs.ext4, mount, nano, ...)
 
----
-
-# Guía: Configuración de RAID 1 (Espejo) en Windows 10
+# PARTE 3: Configuración de RAID 1 (Espejo) en Windows 10
 
 ## 1. Introducción
 
-**RAID 1 (mirroring)** crea una copia idéntica de los datos en **dos discos duros**.
-Si uno falla, los datos permanecen disponibles en el otro.
-Windows 10 permite configurarlo **por software**, sin necesidad de una controladora RAID.
+**RAID 1 (mirroring)** es una configuración de almacenamiento redundante que **duplica los datos en dos discos**. Si uno falla, el sistema puede seguir funcionando con el otro.
+En esta práctica configuraremos **RAID 1 por software** en **Windows 10** dentro de **VirtualBox**, sin necesidad de una controladora RAID.
 
 ---
 
@@ -206,7 +205,7 @@ Windows 10 permite configurarlo **por software**, sin necesidad de una controlad
 
 * Un equipo con **Windows 10 Pro o superior**.
   (Las ediciones *Home* no incluyen la opción de discos dinámicos).
-* Dos discos **del mismo tamaño** (físicos o virtuales).
+* 2 discos adicionales **idénticos** (por ejemplo, 4 GB cada uno) para el RAID.
 * Derechos de administrador.
 
 💡 En **VirtualBox**, puedes añadir dos discos adicionales a la máquina virtual desde:
@@ -262,8 +261,8 @@ Windows sincronizará ambos discos; durante ese tiempo el estado será **Sincron
 En la **Administración de discos**, verás algo como:
 
 ```
-Disco 1  Dinámico  50 GB  Reflejado (E:)
-Disco 2  Dinámico  50 GB  Reflejado (E:)
+Disco 1  Dinámico  4 GB  Reflejado (E:)
+Disco 2  Dinámico  4 GB  Reflejado (E:)
 ```
 
 * Ambos discos mostrarán el mismo volumen “Reflejado”.
@@ -278,11 +277,15 @@ Disco 2  Dinámico  50 GB  Reflejado (E:)
 3. Inicia Windows:
 
    * El sistema mostrará que el **volumen reflejado está degradado**, pero aún accesible.
-4. Vuelve a conectar el disco y selecciona **Reactivar disco** desde la Administración de discos para que Windows lo resincronice.
+
+4. Con la máquina apagada, añade un nuevo disco del mismo tamaño.
+5. Selecciona **Activar disco** desde la Administración de discos para que Windows lo sincronice.
 
 ---
 
 ## 8. Comandos alternativos (PowerShell)
+
+**NO HACER:**
 
 Puedes crear y administrar RAID 1 también con **PowerShell**:
 
@@ -311,18 +314,7 @@ New-Partition -DiskNumber 3 -AssignDriveLetter -UseMaximumSize | Format-Volume -
 
 ---
 
-## 9. Conclusión
-
-Has configurado un **RAID 1 por software en Windows 10** usando discos dinámicos o “espacios de almacenamiento”.
-Este sistema:
-
-* Mejora la **seguridad y disponibilidad de los datos**.
-* No incrementa la capacidad total (solo se usa el tamaño de un disco).
-* Es ideal para **entornos pequeños o educativos**.
-
----
-
-## 10. Recomendación final
+## 9. Recomendación final
 
 Para **entornos reales de empresa**, se recomienda:
 
