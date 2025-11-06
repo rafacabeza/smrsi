@@ -187,7 +187,7 @@ sudo mdadm --manage /dev/md0 --remove /dev/sdb1
 sudo mdadm --manage /dev/md0 --add /dev/sdb1
 ```
 
-## PARTE 2: Configuración de RAID 5 en Ubuntu.
+# PARTE 2: Configuración de RAID 5 en Ubuntu.
 
 - Elabora una guía para configurar una uniad RAID 5 utilizando 3 discos duros.
 - Puedes usar chatgpt pero los pasos serán casi idénticos a los de RAID 1 y la herramienta que uses debe ser la misma: mdadm (además de fdisk, mkfs.ext4, mount, nano, ...)
