@@ -192,14 +192,7 @@ sudo mdadm --manage /dev/md0 --add /dev/sdb1
 - Elabora una guía para configurar una uniad RAID 5 utilizando 3 discos duros.
 - Puedes usar chatgpt pero los pasos serán casi idénticos a los de RAID 1 y la herramienta que uses debe ser la misma: mdadm (además de fdisk, mkfs.ext4, mount, nano, ...)
 
-# PARTE 3: Configuración de RAID 1 (Espejo) en Windows 10
-
-Perfecto 👍 Aquí tienes la **guía en formato Markdown** para configurar **RAID 1 (espejo)** en **Windows 11**, ideal para tus alumnos del módulo **IFC201 – Seguridad informática**.
-Está pensada para usar **VirtualBox**, pero también aplica a equipos físicos.
-
----
-
-# Guía: Configuración de RAID 1 (espejo) en Windows 11
+# PARTE 3: Configuración de RAID 1 (espejo) en Windows 11
 
 ## 1. Introducción
 
@@ -285,7 +278,7 @@ Durante ese proceso, el estado mostrará “**Sincronizando**”.
 
 ---
 
-## 9. Probar la redundancia (opcional)
+## 9. Probar la redundancia
 
 Para simular un fallo:
 
@@ -295,6 +288,8 @@ Para simular un fallo:
 4. Si reconectas el disco, Windows lo volverá a sincronizar automáticamente.
 
 ---
+
+# PARTE 4: Configuración de RAID 1 (Espejo) en Windows 10
 
 ## 10. Alternativa moderna: Espacios de almacenamiento
 
@@ -319,14 +314,7 @@ Ventajas:
 
 ---
 
-## 11. Conclusión
-
-Has configurado un **RAID 1 (espejo)** en Windows 11 utilizando discos virtuales.
-Esta técnica proporciona **redundancia de datos**, protegiendo la información frente a fallos de disco, aunque **no aumenta el rendimiento ni la capacidad total**.
-
----
-
-## 12. Comandos útiles (PowerShell)
+## 11. Comandos útiles (PowerShell)
 
 **NO HACER**
 
