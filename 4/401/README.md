@@ -194,129 +194,153 @@ sudo mdadm --manage /dev/md0 --add /dev/sdb1
 
 # PARTE 3: Configuración de RAID 1 (Espejo) en Windows 10
 
+Perfecto 👍 Aquí tienes la **guía en formato Markdown** para configurar **RAID 1 (espejo)** en **Windows 11**, ideal para tus alumnos del módulo **IFC201 – Seguridad informática**.
+Está pensada para usar **VirtualBox**, pero también aplica a equipos físicos.
+
+---
+
+# Guía: Configuración de RAID 1 (espejo) en Windows 11
+
 ## 1. Introducción
 
-**RAID 1 (mirroring)** es una configuración de almacenamiento redundante que **duplica los datos en dos discos**. Si uno falla, el sistema puede seguir funcionando con el otro.
-En esta práctica configuraremos **RAID 1 por software** en **Windows 10** dentro de **VirtualBox**, sin necesidad de una controladora RAID.
+El **RAID 1**, también llamado **espejo**, consiste en **duplicar los datos en dos discos**.
+Si uno de ellos falla, el sistema puede seguir funcionando con el otro sin pérdida de información.
+En Windows 11, esta configuración se puede realizar con **Discos dinámicos** o con **Espacios de almacenamiento**.
 
 ---
 
 ## 2. Requisitos previos
 
-* Un equipo con **Windows 10 Pro o superior**.
-  (Las ediciones *Home* no incluyen la opción de discos dinámicos).
-* 2 discos adicionales **idénticos** (por ejemplo, 4 GB cada uno) para el RAID.
-* Derechos de administrador.
-
-💡 En **VirtualBox**, puedes añadir dos discos adicionales a la máquina virtual desde:
-
-> **Configuración → Almacenamiento → Controladora SATA → Agregar disco duro**
+* Windows 11 instalado (preferiblemente en una máquina virtual o equipo de pruebas).
+* **Dos discos secundarios** de igual tamaño para crear el RAID (por ejemplo, 4 GB cada uno).
+* **Permisos de administrador** en el sistema.
 
 ---
 
-## 3. Verificar los discos
+## 3. Crear los discos en VirtualBox
 
-1. Inicia Windows 10.
-2. Pulsa `Win + X` → selecciona **Administración de discos**.
-3. Deberías ver:
-
-   * Disco 0 → Sistema (C:)
-   * Disco 1 y Disco 2 → Vacíos (sin asignar)
-
-Si aparecen ventanas emergentes para inicializarlos:
-
-* Selecciona **GPT (GUID Partition Table)**.
-* No crees particiones todavía.
+1. Abre la configuración de tu máquina virtual.
+2. Ve a **Almacenamiento → Controladora SATA → Agregar disco duro**.
+3. Crea **dos discos nuevos** (por ejemplo, 4 GB cada uno).
+4. Inicia Windows 11.
 
 ---
 
-## 4. Convertir los discos a “dinámicos”
+## 4. Comprobar los discos en Windows
 
-Windows usa **discos dinámicos** para crear volúmenes RAID por software.
+1. Abre el **Administrador de discos**:
 
-1. En la **Administración de discos**, haz clic derecho sobre **Disco 1** → **Convertir en disco dinámico...**
-2. Marca **Disco 1 y Disco 2** → **Aceptar**.
+   * Pulsa `Win + X` → selecciona **Administración de discos**
+   * O ejecuta `diskmgmt.msc` desde el menú Inicio.
+2. Deberías ver:
 
-> ⚠️ Este paso borrará las particiones si las hay. Asegúrate de no tener datos en esos discos.
-
----
-
-## 5. Crear el volumen reflejado (RAID 1)
-
-1. Haz clic derecho en el **espacio no asignado** de uno de los discos dinámicos.
-2. Elige **Nuevo volumen reflejado...**
-3. Se abre el **Asistente para nuevo volumen reflejado**:
-
-   * Selecciona los **dos discos**.
-   * Asigna una letra de unidad (por ejemplo, **E:**).
-   * Formatea con **NTFS** y asigna una etiqueta (por ejemplo, `RAID1`).
-4. Haz clic en **Finalizar**.
-
-Windows sincronizará ambos discos; durante ese tiempo el estado será **Sincronizando**.
+   * Disco 0 → el disco del sistema.
+   * Disco 1 y Disco 2 → los discos nuevos sin inicializar.
 
 ---
 
-## 6. Verificar el estado del RAID
+## 5. Inicializar los discos
 
-En la **Administración de discos**, verás algo como:
-
-```
-Disco 1  Dinámico  4 GB  Reflejado (E:)
-Disco 2  Dinámico  4 GB  Reflejado (E:)
-```
-
-* Ambos discos mostrarán el mismo volumen “Reflejado”.
-* Puedes escribir o borrar archivos y los cambios se duplican automáticamente.
+1. Si aparece una ventana para **inicializar discos**, selecciona **GPT (GUID Partition Table)**.
+2. Si no aparece, haz clic derecho sobre cada disco → **Inicializar disco** → GPT.
+3. Luego, clic derecho sobre el área “No asignado” → **Nuevo volumen simple** y **no lo formatees aún** (solo verifica que funcionan).
 
 ---
 
-## 7. Probar la tolerancia a fallos (opcional)
+## 6. Convertir los discos a dinámicos
+
+Para crear un RAID 1 por software, los discos deben ser **dinámicos**.
+
+1. En el **Administrador de discos**, clic derecho sobre **Disco 1** → **Convertir en disco dinámico**.
+2. Marca **Disco 1** y **Disco 2**, y acepta.
+3. Espera a que el sistema complete la conversión.
+
+---
+
+## 7. Crear el volumen reflejado (RAID 1)
+
+1. Clic derecho sobre el espacio **no asignado** de uno de los discos dinámicos → **Nuevo volumen reflejado**.
+2. Se abrirá el asistente:
+
+   * Añade **Disco 1** y **Disco 2** al espejo.
+   * Asigna una letra de unidad (por ejemplo, `E:`).
+   * Formatea en **NTFS** y ponle un nombre (por ejemplo, `RAID1_DATOS`).
+3. Pulsa **Finalizar** y confirma el aviso de conversión a dinámico.
+
+💡 Windows empezará a **sincronizar los discos** automáticamente.
+Durante ese proceso, el estado mostrará “**Sincronizando**”.
+
+---
+
+## 8. Verificar el RAID 1
+
+1. En el Administrador de discos, el volumen aparecerá como:
+
+   ```
+   Reflejado (E:)  NTFS  Correcto (Sincronizado)
+   ```
+2. Puedes comprobarlo también desde **Explorador de archivos → Este equipo**:
+
+   * Aparece la nueva unidad `E:` con el nombre `RAID1_DATOS`.
+
+---
+
+## 9. Probar la redundancia (opcional)
+
+Para simular un fallo:
 
 1. Apaga la máquina virtual.
-2. Desconecta uno de los discos RAID (por ejemplo, quita el Disco 2 desde VirtualBox).
-3. Inicia Windows:
-
-   * El sistema mostrará que el **volumen reflejado está degradado**, pero aún accesible.
-
-4. Con la máquina apagada, añade un nuevo disco del mismo tamaño.
-5. Selecciona **Activar disco** desde la Administración de discos para que Windows lo sincronice.
+2. En VirtualBox, **desconecta uno de los discos RAID**.
+3. Inicia Windows: el volumen reflejado seguirá accesible (pero en modo degradado).
+4. Si reconectas el disco, Windows lo volverá a sincronizar automáticamente.
 
 ---
 
-## 8. Comandos alternativos (PowerShell)
+## 10. Alternativa moderna: Espacios de almacenamiento
 
-**NO HACER:**
 
-Puedes crear y administrar RAID 1 también con **PowerShell**:
+Windows 11 también permite crear espejos mediante **Espacios de almacenamiento**, una interfaz más sencilla:
 
-```powershell
-Get-PhysicalDisk
-```
+1. Con la máquina parada añade dos discos nuevos para crear otro RAID 1.
+2. Abre **Panel de control → Sistema y seguridad → Espacios de almacenamiento**.
+3. Haz clic en **Crear un nuevo grupo y espacio de almacenamiento**.
+4. Selecciona los dos discos y elige:
 
-→ Muestra los discos disponibles.
+   * **Resiliencia: Espejo bidireccional (RAID 1)**
+   * **Sistema de archivos: NTFS**
+5. Asigna un nombre y una letra de unidad.
+6. Crea el espacio: Windows lo gestionará automáticamente.
 
-```powershell
-New-StoragePool -FriendlyName "MiRAID1" -StorageSubsystemFriendlyName "Storage Spaces*" -PhysicalDisks (Get-PhysicalDisk -CanPool $True)
-```
+Ventajas:
 
-Luego crea el volumen reflejado:
-
-```powershell
-New-VirtualDisk -StoragePoolFriendlyName "MiRAID1" -FriendlyName "VolumenRAID1" -ResiliencySettingName Mirror -Size 40GB
-```
-
-Y finalmente:
-
-```powershell
-Initialize-Disk -VirtualDisk (Get-VirtualDisk -FriendlyName "VolumenRAID1")
-New-Partition -DiskNumber 3 -AssignDriveLetter -UseMaximumSize | Format-Volume -FileSystem NTFS -NewFileSystemLabel "RAID1"
-```
+* Más fácil de usar.
+* Permite ampliar o reemplazar discos fácilmente.
+* Admite unidades de distinto tamaño.
 
 ---
 
-## 9. Recomendación final
+## 11. Conclusión
 
-Para **entornos reales de empresa**, se recomienda:
+Has configurado un **RAID 1 (espejo)** en Windows 11 utilizando discos virtuales.
+Esta técnica proporciona **redundancia de datos**, protegiendo la información frente a fallos de disco, aunque **no aumenta el rendimiento ni la capacidad total**.
 
-* Usar **RAID por hardware** (controladora dedicada).
-* O soluciones **NAS** con soporte nativo de RAID (Synology, QNAP, TrueNAS, etc.).
+---
+
+## 12. Comandos útiles (PowerShell)
+
+**NO HACER**
+
+Si prefieres hacerlo por línea de comandos:
+
+```powershell
+# Ver discos disponibles
+Get-Disk
+
+# Convertir discos a dinámicos
+Set-Disk -Number 1 -IsDynamic $true
+Set-Disk -Number 2 -IsDynamic $true
+
+# Crear volumen reflejado (RAID 1)
+New-Volume -DiskNumber 1,2 -FriendlyName "RAID1_DATOS" -FileSystem NTFS -DriveLetter E -StoragePoolFriendlyName "Primordial" -ResiliencySettingName Mirror
+```
+
