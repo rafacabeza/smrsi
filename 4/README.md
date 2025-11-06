@@ -89,7 +89,7 @@ Una **copia de seguridad (backup)** es una réplica de los datos que permite rec
 **Tipos de copia:**
 
 * **Completa:** copia todos los datos.
-* **Incremental:** copia solo los datos modificados desde la última copia.
+* **Incremental:** copia solo los datos modificados desde la última copia (completa o incremental).
 * **Diferencial:** copia los datos modificados desde la última copia completa.
 * **Espejo (mirror):** mantiene una copia exacta en tiempo real.
 
