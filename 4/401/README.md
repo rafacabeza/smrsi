@@ -242,6 +242,9 @@ En Windows 11, esta configuración se puede realizar con **Discos dinámicos** o
 
 ## 6. Convertir los discos a dinámicos
 
+> NOTA: En Windows 11 la conversión a volúmenes dinámicos se hace más adelante. Aparece en el asistente del paso **7**.
+
+
 Para crear un RAID 1 por software, los discos deben ser **dinámicos**.
 
 1. En el **Administrador de discos**, clic derecho sobre **Disco 1** → **Convertir en disco dinámico**.
