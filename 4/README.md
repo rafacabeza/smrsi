@@ -157,3 +157,5 @@ Debes copiar el guión en un documento word u open office y pegar tus capturas d
 Lista de prácticas:
 
 - [RAID](401). 
+- [Copia de seguridad en Windows](402).
+- [Conexión SSH](403).
