@@ -144,3 +144,16 @@ Puede hacerse desde:
 
 **Ocultación (Steganografía):** esconde información dentro de otros archivos (por ejemplo, en una imagen o audio).
 Se usa para proteger o disimular información sensible.
+
+## Prácticas
+
+Vamos a desarrollar estos contenidos desde un punto de vista práctico. Cada una de las siguientes prácticas deben realizarse en escritorios máquinas virtuales. 
+
+Debes copiar el guión en un documento word u open office y pegar tus capturas de pantalla con dos finalidades:
+
+- Demostrar que has realizado el trabajo
+- Poder estudiar y revisar los resultados de tu trabajo
+
+Lista de prácticas:
+
+- [RAID](401). 
