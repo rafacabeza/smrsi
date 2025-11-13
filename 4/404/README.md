@@ -1,4 +1,8 @@
-# Uso de rsync y rsnapshot
+# Uso de rsync y rsnapshot+
+
+> NOTA:
+> "remoteserver" se va llama "isardvdi"
+> El cliente ubuntu se llama "ubuntu22"
 
 ## Objetivos de la práctica
 
@@ -38,7 +42,9 @@ sudo apt install -y rsync rsnapshot openssh-client openssh-server
 2. Crea un usuario de backup en `remoteserver` (ejemplo `backupuser`) — en `remoteserver`:
 
 ```bash
-sudo adduser --disabled-password --gecos "" backupuser
+sudo adduser --gecos "" backupuser
+sudo passwd backupuser
+## ponemos contraseña pero sería conveniente quitarla después
 ## (opcionalmente darle permisos sudo solo para rsync, ver más abajo)
 ```
 
@@ -79,6 +85,8 @@ Si devuelve `OK` y el usuario/host, la autenticación por clave funciona.
 ---
 
 ## 4 — Asegurar la clave (opcional pero recomendado)
+
+> Esto no lo vamos a hacer. Lo dejamos para que lo investigue quien quiera.
 
 Para una clave **sin passphrase** usada en backups automáticos, restringe su uso en `remoteserver` añadiendo parámetros antes de la clave en `~/.ssh/authorized_keys`, por ejemplo:
 
@@ -262,4 +270,54 @@ Ajusta intervalos y horarios según tamaño y ventana de mantenimiento.
 * **SSH pide contraseña**: la clave pública no se instaló correctamente o el `ssh` está buscando otra identidad. Ver `ssh -v` para diagnosticar. Confirma permisos `~/.ssh` (700) y `authorized_keys` (600).
 * **rsnapshot dice error al parsear / backup line**: comprueba separadores (deben ser `TAB`, no espacios) en las líneas `backup`. Usa `rsnapshot configtest`. ([Server Fault][4])
 * **Errores de permisos al rsync**: si necesitas leer archivos de root en remoto, usa `--rsync-path="sudo rsync"` y configura `sudoers` para `/usr/bin/rsync`.
+
+## 13. Ejecutar **rsnapshot en el servidor de backup**
+
+**Es la opción más común y recomendable**.
+
+### ✅  Ventajas
+
+* **Centralización**: todas las tareas de backup (configuración, logs, rotación, retención) se gestionan en un solo sitio.
+* **Más seguro**: el servidor de backup accede a las máquinas de origen *solo en lectura*, mediante SSH con clave pública.
+* **Ahorra recursos** en los equipos de origen (no cargan con procesos de copia ni de rotación).
+* **Fácil de automatizar** con `cron` o `systemd` timers.
+* **Mejor integridad**: si una máquina de origen falla o se borra algo, el backup sigue disponible en el servidor.
+
+### ⚠️ Requisitos
+
+* El servidor de backup debe poder conectarse **por SSH sin contraseña** a los equipos origen (`backupuser@remoteserver` en tu caso).
+* Las rutas en `rsnapshot.conf` deben usar el prefijo SSH, por ejemplo:
+
+  ```
+  backup  backupuser@remoteserver.example.com:/home/usuario/  remoto/
+  ```
+
+---
+
+## 2. Ejecutar **rsnapshot en cada máquina origen**
+
+(Es decir, que cada equipo guarde sus propias copias locales o en red)
+
+### ✅ Ventajas
+
+* Menos exposición de red: no se necesita que el servidor acceda por SSH a los equipos origen.
+* Puede ser útil si las máquinas están **aisladas o sin acceso saliente**.
+
+### ⚠️ Desventajas
+
+* **Gestión dispersa**: cada máquina tiene su propia configuración, logs, retenciones y programaciones.
+* **Mayor riesgo de pérdida**: si una máquina falla, pierdes sus backups locales.
+* **Más mantenimiento**: actualizaciones y comprobaciones duplicadas en muchos sistemas.
+
+---
+
+## ⚖️ **Conclusión**
+
+> 💡 Lo mejor es usar **rsnapshot en el servidor de backup**, conectando a las máquinas origen por SSH con clave pública.
+
+Así:
+
+* Las máquinas origen no necesitan scripts ni tareas cron.
+* El servidor mantiene versiones históricas con poco espacio (gracias a los hardlinks).
+* Puedes restaurar datos fácilmente desde un único punto.
 
