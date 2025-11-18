@@ -271,11 +271,13 @@ Ajusta intervalos y horarios según tamaño y ventana de mantenimiento.
 * **rsnapshot dice error al parsear / backup line**: comprueba separadores (deben ser `TAB`, no espacios) en las líneas `backup`. Usa `rsnapshot configtest`. ([Server Fault][4])
 * **Errores de permisos al rsync**: si necesitas leer archivos de root en remoto, usa `--rsync-path="sudo rsync"` y configura `sudoers` para `/usr/bin/rsync`.
 
-## 13. Ejecutar **rsnapshot en el servidor de backup**
+## 14.  Dónde ejecutar rsnapshot
+
+### 1. Ejecutar **rsnapshot en el servidor de backup**
 
 **Es la opción más común y recomendable**.
 
-### ✅  Ventajas
+#### ✅  Ventajas
 
 * **Centralización**: todas las tareas de backup (configuración, logs, rotación, retención) se gestionan en un solo sitio.
 * **Más seguro**: el servidor de backup accede a las máquinas de origen *solo en lectura*, mediante SSH con clave pública.
@@ -283,7 +285,7 @@ Ajusta intervalos y horarios según tamaño y ventana de mantenimiento.
 * **Fácil de automatizar** con `cron` o `systemd` timers.
 * **Mejor integridad**: si una máquina de origen falla o se borra algo, el backup sigue disponible en el servidor.
 
-### ⚠️ Requisitos
+#### ⚠️ Requisitos
 
 * El servidor de backup debe poder conectarse **por SSH sin contraseña** a los equipos origen (`backupuser@remoteserver` en tu caso).
 * Las rutas en `rsnapshot.conf` deben usar el prefijo SSH, por ejemplo:
@@ -294,16 +296,16 @@ Ajusta intervalos y horarios según tamaño y ventana de mantenimiento.
 
 ---
 
-## 2. Ejecutar **rsnapshot en cada máquina origen**
+### 2. Ejecutar **rsnapshot en cada máquina origen**
 
 (Es decir, que cada equipo guarde sus propias copias locales o en red)
 
-### ✅ Ventajas
+#### ✅ Ventajas
 
 * Menos exposición de red: no se necesita que el servidor acceda por SSH a los equipos origen.
 * Puede ser útil si las máquinas están **aisladas o sin acceso saliente**.
 
-### ⚠️ Desventajas
+#### ⚠️ Desventajas
 
 * **Gestión dispersa**: cada máquina tiene su propia configuración, logs, retenciones y programaciones.
 * **Mayor riesgo de pérdida**: si una máquina falla, pierdes sus backups locales.
@@ -311,7 +313,7 @@ Ajusta intervalos y horarios según tamaño y ventana de mantenimiento.
 
 ---
 
-## ⚖️ **Conclusión**
+### ⚖️ **Conclusión**
 
 > 💡 Lo mejor es usar **rsnapshot en el servidor de backup**, conectando a las máquinas origen por SSH con clave pública.
 
