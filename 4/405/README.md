@@ -129,7 +129,7 @@ snapshot_root   /backup
 - Hay que descomentar la línea siguiente para que rsnapshot pueda usar ssh
 
 ```
-cms_ssh   /usr/bin/ssh
+cmd_ssh   /usr/bin/ssh
 ```
 
 - Ajusta los intervalos de rotación: 7 copias diarias, 4 semanales, 12 mensuales. Busca la parte de "BACKUP LEVELS":
