@@ -88,10 +88,16 @@ Una **copia de seguridad (backup)** es una réplica de los datos que permite rec
 
 **Tipos de copia:**
 
+Desde un enfoque tradicional podemos hablar de:
+
 * **Completa:** copia todos los datos.
 * **Incremental:** copia solo los datos modificados desde la última copia (completa o incremental).
 * **Diferencial:** copia los datos modificados desde la última copia completa.
 * **Espejo (mirror):** mantiene una copia exacta en tiempo real.
+
+Hacer una copia completa es costoso, lento pero permite una restauración directa y rápida. Las copias incrementales y diferenciales permiten ocupar menos tamaño en el backup y hacer copias más rápidas pero la restauración se hace más complicada y lenta.
+
+Actualmente hay sistemas más sofisticados que usan el concepto deduplicación. Se trata de copiar sólo lo que ha cambiado como si se tratara de una copia diferencial pero a su vez conseguir que se acceda a la estructura de ficheros como si se hubiera hecho una copia completa.
 
 **Buenas prácticas:**
 
@@ -113,11 +119,22 @@ Permite **restaurar un equipo completo** rápidamente tras un fallo.
 
 ### **Programas de copia de seguridad**
 
-Algunos programas comunes:
+* **Windows:** Propios del sistema: historial de archivos, robocopy. Creados por terceros: Acronis, Cobian Backup. 
+* **Linux:** `rsync`, `rsnapshot`, `Timeshift`, `Deja Dup`, `Borg`.
+* **Multiplataforma:** Veeam, Duplicati, Restic.
 
-* **Windows:** Historial de archivos, Copias de seguridad del sistema.
-* **Linux:** `rsync`, `rsnapshot`, `Timeshift`, `Deja Dup`.
-* **Multiplataforma:** Veeam, Duplicati, Acronis, Cobian Backup.
+De forma breve comentario sobre ellos:
+
+* Algunos de ellos como rsync o robocopy sólo permiten copiar y sincronizar carpetas, no son sistemas completos de copia de seguridad.
+* Rsnapshot sí que consigue deduplicación efectiva pero sólo está disponible en linux y la restauración de archivos resulta poco intuitiva.
+* Veeam. Orientado a entornos profesionales; automatización completa, respaldo de VMs, servidores y PCs; sí tiene deduplicación y compresión avanzadas.
+* Acronis Cyber Protect / True Image: Backup profesional/doméstico; permite automatización, clonación de discos, protección antiransomware; sí tiene deduplicación (según edición).
+* Cobian Backup. Gratis y sencillo; automatiza copias de archivos en Windows; sin deduplicación, sin cifrado moderno, pensado para backups simples.
+* Duplicati. Interfaz web, fácil para usuarios domésticos; cifrado + deduplicación; soporta muchos destinos cloud; algo más lento y pesado que Restic/Borg.
+* Restic. Multiplataforma, muy fácil de usar; cifrado integrado, deduplicación por chunks (fragmentos), automatizable; ideal para nube (S3, rclone, SSH).
+* BorgBackup. Muy eficiente en deduplicación y compresión; requiere más configuración; sólo Linux/Unix; excelente rendimiento en servidores.
+
+*Nosotros vamos a aprender a usar rsync, rsnapshot y restic*
 
 ---
 
@@ -157,5 +174,7 @@ Debes copiar el guión en un documento word u open office y pegar tus capturas d
 Lista de prácticas:
 
 - [RAID](401). 
-- [Copia de seguridad en Windows](402).
+- [Copia de seguridad en Windows](402). // No la vamos a hacer este curso
 - [Conexión SSH](403).
+- [Uso de rsync y rsnaptshot](405).
+- [Uso de restic](406).
