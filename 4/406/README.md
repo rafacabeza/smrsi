@@ -56,6 +56,7 @@ sudo apt install restic -y
 
 ### 2.2 Crear repositorio local
 
+
 Ejemplo en `/home/isard/backup_local`:
 
 ```bash
@@ -72,7 +73,7 @@ restic init -r /home/isard/backup_local
 Usa SSH:
 
 ```bash
-#OJO. El repositorio debe existir
+#OJO. El directorio debe existir
 restic init -r sftp:backupuser@192.168.100.1:/backups/ubuntu10
 ```
 
@@ -153,6 +154,7 @@ Reabrir PowerShell.
 Ubuntu:
 
 ```bash
+
 restic backup /home/isard/Documentos
 ## backup → realiza la copia
 ## ruta → carpeta o archivo a guardar
@@ -198,7 +200,9 @@ restic forget --keep-daily 7 --prune
 restic forget --keep-daily 7 --keep-weekly 4 --keep-monthly 6 --prune
 ```
 
+
 Recomendación: **probar antes con dry-run**:
+
 
 ```bash
 restic forget --keep-daily 7 --dry-run
@@ -219,6 +223,7 @@ crontab -e
 Añadir:
 
 ```bash
+
 0 */6 * * * restic backup /home/isard/Documentos --tag auto
 ## Cada 6 horas
 ```
@@ -271,7 +276,7 @@ restic snapshots --tag diario
 ### 8.1 Restaurar un archivo específico
 
 ```bash
-restic restore latest --target /tmp/restore --include "/home/isard/Documentos/ejemplo.txt"
+restic restore latest --target /tmp/restore --include "/home/isard/Documentos/ejemplo.txt
 ```
 
 Windows:
@@ -286,13 +291,15 @@ restic restore latest --target C:\restore --include "C:\Users\Alumno\Documents\e
 
 ```bash
 restic restore latest --target /tmp/restore
-```
+```****
 
 ---
 
 ## 🧩 **9. Montar un repositorio como unidad**
 
+
 Esta parte es **interesante y práctica**, porque se ve el contendido de los snapshots como un “explorador de backups”.
+
 
 ### 9.1 Ubuntu
 
