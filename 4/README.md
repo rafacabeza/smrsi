@@ -13,7 +13,7 @@ El **alojamiento de datos** se refiere al **lugar físico o lógico donde se gua
 Se deben tener en cuenta varios factores:
 
 * **Dispositivo:** tipo de hardware donde se almacenan los datos (disco duro, SSD, cinta, etc.).
-* **Soporte:** medio físico en el que se graban los datos. 
+* **Soporte:** medio físico en el que se graban los datos.
 * **Rendimiento:** velocidad de acceso y transferencia.
 * **Disponibilidad:** posibilidad de acceder a la información cuando se necesita.
 * **Accesibilidad física:** facilidad o dificultad de acceso físico al dispositivo (local, remoto, extraíble).
@@ -178,3 +178,21 @@ Lista de prácticas:
 - [Conexión SSH](403).
 - [Uso de rsync y rsnaptshot](405).
 - [Uso de restic](406).
+
+## Cuestionario de repaso
+
+1. ¿Cuál es el beneficio del RAID-0?
+2. ¿Cuál es el beneficio del RAID-1?
+3. ¿Hay algún sistema que consiga los mismos beneficios de RAID-0 y RAID-1?
+4. ¿Qué protocolo usarías para compartir ficheros en un entorno Windows?
+5. En el proceso de copias de seguridad remotas con Restic, hemos usado un protocolo de transferencia de ficheros ¿Cuál es?
+6. ¿Qué indica cada número en la regla 3-2-1?
+7. Supongamos que en nuestra organización hacemos copias de segurirdad en un servidor dedicado a backup y en un disco externo que conectamos cada lunes para hacer copia manual. ¿Cumplimos la regla 3-2-1?
+8. En mi red local hay un equipo servidor cuya configuración es compleja. ¿Puedo hacer algún tipo de copia de seguridad para evitar problemas se se rompe dicho equipo?
+9. Tengo una carpeta "datos" y una carpeta "copiadatos" donde guardo una copia exacta de la primera. ¿Conoces alguna herramienta que me permita hacer esto?
+10. Escribe el comando que me permita actualizar los ficheros nuevos o modificados desde datos hasta copiadatos. Si borro un fichero en "datos", ¿ese comando también lo borra en "copiadatos"? ¿Se puede hacer que sí se produzca el borrado?
+11. Imagina que tenemos que hacer copia de seguridad de 10GB de datos. ¿Qué problemas hay en hacer una copia completa diaria de los mismos?
+12. ¿Hay soluciones que eviten esos problemas? Di cual es su nombre y qué otros inconvenientes generan.
+13. rsnapshot y restic evitan los problemas anteriores. ¿Sabes cómo lo consiguen?.
+14. Sabes qué concepto aportan estas herramientas para conseguir que las copias diarias sean rápidas y no crecer mucho en espacio?
+15. Supón dos ficheros w11.iso y Windows11.iso, son los mismos pero se han guardado  dos copias con nombres distintos en nuestro sistema de archivos. Ambos ocupan 5GB. ¿Cuánto espacio usarán rsnapshot y restic para hacer backup de esos ficheros?
