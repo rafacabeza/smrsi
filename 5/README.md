@@ -291,7 +291,3 @@ La **seguridad física** constituye la primera barrera de defensa en cualquier s
 
 18. **Creación de una instancia en la nube con políticas de seguridad básicas.**
 19. **Simulación de errores comunes en la nube (bucket público, claves expuestas).**
-
----
-
-Si quieres, puedo convertir todo esto en un **documento para entregar al alumnado**, o **ampliar cada epígrafe con más contenido teórico**, o **escribir los guiones paso a paso de cada práctica**. ¿Qué formato prefieres para trabajar con tus alumnos?
