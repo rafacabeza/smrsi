@@ -116,11 +116,176 @@ La **seguridad física** constituye la primera barrera de defensa en cualquier s
 
 ### **2.1. Usuario/Contraseña**
 
-* Políticas de contraseñas:
+#### Usuarios
 
-  * Complejidad.
-  * Caducidad.
-  * Reintentos fallidos.
+En Windows pueden existir **tres tipos principales de cuentas de usuario**, cada una con características, ventajas y limitaciones diferentes. 
+Desde el punto de vista de quién gestiona la existencia de un usuario y su autenticación:
+
+**1.  Cuenta Local**
+
+Es la cuenta tradicional que existe **solo en ese equipo**. Es usada en Windows. Es el tipo de cuenta linux más generalizada.
+
+Características
+
+* Las credenciales se almacenan **localmente**.
+* No requiere conexión a Internet.
+* No sincroniza datos con otros dispositivos.
+* Control total sobre la privacidad, ya que los datos no salen del equipo.
+
+✔ Ventajas
+
+* Funciona siempre, incluso sin Internet.
+* Mayor control sobre los datos personales.
+* Útil para entornos cerrados o máquinas virtuales.
+
+✖ Limitaciones
+
+* No permite sincronizar configuraciones, contraseñas u OneDrive.
+* Dificulta la recuperación de la contraseña si la olvidas.
+
+---
+
+**2. Cuenta Microsoft (M365 Personal / Hotmail / Outlook)**
+
+Es una cuenta vinculada al **ecosistema Microsoft** que permite sincronización entre dispositivos.
+
+Características
+
+* Usa un correo @hotmail, @outlook o similar.
+* Permite sincronizar configuraciones del sistema, Edge, contraseñas, apps y OneDrive.
+* Habilita funciones como:
+
+  * Windows Hello (PIN, huella, webcam)
+  * BitLocker recovery automatico
+  * Respaldo de configuraciones en la nube
+
+✔ Ventajas
+
+* Recuperación de cuenta mediante correo, SMS o 2FA.
+* Sincronización entre varios equipos.
+* Mejora la seguridad gracias a MFA.
+
+✖ Limitaciones
+
+* Requiere conexión ocasional a Internet.
+* Algunos usuarios prefieren no enlazar la cuenta del sistema con la nube.
+
+**3. Cuenta de Active Directory (AD) / Azure AD / Entra ID**
+
+Usada en **empresas, centros educativos y redes corporativas**. En linux existen sistemas similares basados en LDAP pero no los vamos a ver con detalle.
+
+Características
+
+* Gestionadas desde un **servidor** (AD clásico) o la nube (Azure AD / Entra ID).
+* Permite políticas centralizadas:
+
+  * Contraseñas
+  * Software permitido
+  * Restricciones de seguridad
+  * Accesos a recursos compartidos
+
+✔ Ventajas
+
+* Control centralizado para administradores.
+* Gestión masiva de usuarios.
+* Seguridad avanzada con políticas de empresa.
+* Autenticación con SSO en apps corporativas.
+
+✖ Limitaciones
+
+* Requiere infraestructura (servidor AD o suscripción a Entra ID).
+* Solo útil en entornos profesionales.
+
+# 📝 Resumen rápido
+
+| Tipo de cuenta               | Dónde se usa                    | Ventajas                      | Limitaciones                             |
+| ---------------------------- | ------------------------------- | ----------------------------- | ---------------------------------------- |
+| **Local**                    | Uso personal, VMs, laboratorios | Privacidad, sin Internet      | Sin sincronización ni recuperación fácil |
+| **Microsoft**                | Usuarios domésticos             | Sincroniza, 2FA, recuperación | Vinculada a la nube                      |
+| **Active Directory / Entra** | Empresas y escuelas             | Políticas centralizadas, SSO  | Requiere infraestructura                 |
+
+
+#### Contraseñas
+
+En los sistemas que usan usuario/contraseña se deben definir unas políticas de contraseña.
+
+**1. Longitud mínima**
+
+  * **12 caracteres** como mínimo.
+  * Preferible **16 o más** para cuentas críticas.
+
+**2. Complejidad razonable**
+
+  * Mezclar **mayúsculas, minúsculas, números y símbolos**, **pero sin reglas obligatorias absurdas** (evitar “tiene que llevar al menos 1 símbolo”).
+  * Mejor fomentar **contraseñas largas** que complicadas.
+
+**3. No reutilización**
+
+  * **Prohibido usar la misma contraseña** en varios servicios.
+  * Cambios obligatorios únicamente si hay sospecha o brecha.
+
+**4. Bloqueo ante intentos fallidos**
+
+  * Bloquear la cuenta temporalmente tras **5–10 intentos** fallidos.
+  * Evita ataques de fuerza bruta.
+
+**5. Almacenamiento seguro**
+
+  * Nunca guardar contraseñas en texto plano.
+  * Usar gestor de contraseñas
+
+**6. Autenticación multifactor (MFA)**
+
+* Requerir MFA en:
+
+  * Cuentas administrativas
+  * Accesos remotos
+  * Servicios críticos
+
+**7. Prohibir contraseñas débiles**
+
+* Bloquear automáticamente contraseñas:
+
+  * Muy comunes ("123456", "admin", "password")
+  * Basadas en el nombre del usuario
+  * Detectadas en listas de filtraciones (**HIBP**, etc.)
+
+**8. Frases de paso (passphrases)**
+
+* Promover **frases fáciles de recordar pero largas**, ejemplo:
+  👉 `PatoNaranjaBaila2024!`
+
+**9. Evitar cambios periódicos forzados**
+
+* Ya no se recomienda cambiar contraseñas cada 30–90 días.
+* Solo cambiar si:
+
+  * se sospecha compromiso
+  * se detecta filtración
+  * el usuario la ha compartido
+
+**10. Formación y concienciación**
+
+* Explicar a los usuarios:
+
+  * cómo crear contraseñas seguras
+  * cómo usar gestores
+  * cómo detectar phishing
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 * Herramientas de hash:
 
   * Linux: `/etc/shadow`, hashes SHA512.
