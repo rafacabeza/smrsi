@@ -121,7 +121,7 @@ La **seguridad física** constituye la primera barrera de defensa en cualquier s
 En Windows pueden existir **tres tipos principales de cuentas de usuario**, cada una con características, ventajas y limitaciones diferentes. 
 Desde el punto de vista de quién gestiona la existencia de un usuario y su autenticación:
 
-**1.  Cuenta Local**
+**1)  Cuenta Local**
 
 Es la cuenta tradicional que existe **solo en ese equipo**. Es usada en Windows. Es el tipo de cuenta linux más generalizada.
 
@@ -145,7 +145,7 @@ Características
 
 ---
 
-**2. Cuenta Microsoft (M365 Personal / Hotmail / Outlook)**
+**2) Cuenta Microsoft (M365 Personal / Hotmail / Outlook)**
 
 Es una cuenta vinculada al **ecosistema Microsoft** que permite sincronización entre dispositivos.
 
@@ -170,7 +170,7 @@ Características
 * Requiere conexión ocasional a Internet.
 * Algunos usuarios prefieren no enlazar la cuenta del sistema con la nube.
 
-**3. Cuenta de Active Directory (AD) / Azure AD / Entra ID**
+**3) Cuenta de Active Directory (AD) / Azure AD / Entra ID**
 
 Usada en **empresas, centros educativos y redes corporativas**. En linux existen sistemas similares basados en LDAP pero no los vamos a ver con detalle.
 
@@ -209,32 +209,32 @@ Características
 
 En los sistemas que usan usuario/contraseña se deben definir unas políticas de contraseña.
 
-**1. Longitud mínima**
+**1) Longitud mínima**
 
   * **12 caracteres** como mínimo.
   * Preferible **16 o más** para cuentas críticas.
 
-**2. Complejidad razonable**
+**2) Complejidad razonable**
 
   * Mezclar **mayúsculas, minúsculas, números y símbolos**, **pero sin reglas obligatorias absurdas** (evitar “tiene que llevar al menos 1 símbolo”).
   * Mejor fomentar **contraseñas largas** que complicadas.
 
-**3. No reutilización**
+**3) No reutilización**
 
   * **Prohibido usar la misma contraseña** en varios servicios.
   * Cambios obligatorios únicamente si hay sospecha o brecha.
 
-**4. Bloqueo ante intentos fallidos**
+**4) Bloqueo ante intentos fallidos**
 
   * Bloquear la cuenta temporalmente tras **5–10 intentos** fallidos.
   * Evita ataques de fuerza bruta.
 
-**5. Almacenamiento seguro**
+**5) Almacenamiento seguro**
 
   * Nunca guardar contraseñas en texto plano.
   * Usar gestor de contraseñas
 
-**6. Autenticación multifactor (MFA)**
+**6) Autenticación multifactor (MFA)**
 
 * Requerir MFA en:
 
@@ -242,7 +242,7 @@ En los sistemas que usan usuario/contraseña se deben definir unas políticas de
   * Accesos remotos
   * Servicios críticos
 
-**7. Prohibir contraseñas débiles**
+**7) Prohibir contraseñas débiles**
 
 * Bloquear automáticamente contraseñas:
 
@@ -250,12 +250,12 @@ En los sistemas que usan usuario/contraseña se deben definir unas políticas de
   * Basadas en el nombre del usuario
   * Detectadas en listas de filtraciones (**HIBP**, etc.)
 
-**8. Frases de paso (passphrases)**
+**8) Frases de paso (passphrases)**
 
 * Promover **frases fáciles de recordar pero largas**, ejemplo:
   👉 `PatoNaranjaBaila2024!`
 
-**9. Evitar cambios periódicos forzados**
+**9) Evitar cambios periódicos forzados**
 
 * Ya no se recomienda cambiar contraseñas cada 30–90 días.
 * Solo cambiar si:
@@ -264,25 +264,13 @@ En los sistemas que usan usuario/contraseña se deben definir unas políticas de
   * se detecta filtración
   * el usuario la ha compartido
 
-**10. Formación y concienciación**
+**10) Formación y concienciación**
 
 * Explicar a los usuarios:
 
   * cómo crear contraseñas seguras
   * cómo usar gestores
   * cómo detectar phishing
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -293,17 +281,86 @@ En los sistemas que usan usuario/contraseña se deben definir unas políticas de
 
 ### **2.2. Autenticación multifactor**
 
-* Tarjetas inteligentes (SmartCards).
+* Tarjetas inteligentes (SmartCards), por ejemplo DNI electrónico.
 * Tokens FIDO2 y U2F.
 * Aplicaciones OTP (Google Authenticator, etc.).
 
-### **2.3. Biometría**
+> [OJO! FIDO2 y smartcards también porían usarse para login directo](https://www.youtube.com/watch?v=L32w9WAEqRs)
+> [Login con Yubikey](https://www.youtube.com/watch?v=3IBS4v8U7_M)
+> [Login con smartcard](https://www.youtube.com/watch?v=x9brdyDGmNo)
+> 
+
+
+### **2.3. Gestores de contraseñas**
+
+#### 🔐 ¿Qué es un gestor de contraseñas?
+
+Un **gestor de contraseñas** es una herramienta que:
+
+* Guarda todas tus contraseñas en una **bóveda cifrada**.
+* Te permite usar **contraseñas largas y únicas** sin tener que recordarlas.
+* Autocompleta credenciales en páginas web y aplicaciones.
+* Sincroniza tus claves entre dispositivos de forma segura.
+
+---
+
+#### 🛡️ ¿Por qué es recomendable su uso en 2025?
+
+Hoy es más necesario que nunca porque:
+
+* Cada servicio exige **contraseñas fuertes y únicas** para evitar robos.
+* La mayoría de ataques ocurren por **contraseñas débiles o reutilizadas**.
+* Hay un aumento constante de **filtraciones masivas** de datos.
+* Usamos más dispositivos (PC, móvil, tablet), y un gestor evita errores.
+* Permite activar fácilmente la **autenticación en dos pasos (2FA)**.
+
+En resumen: **seguridad, comodidad y prevención de ataques**.
+
+---
+
+#### 📋 Ejemplos de gestores de contraseñas (los más usados en 2025)
+
+* **Bitwarden** (open-source, gratuito y muy completo)
+* **KeePass / KeePassXC** (archivos locales, open-source). No hay un servidor que almacene las claves y que sirva para sincronizarlas. Es ideal pero más laborioso de aprender y poner en marcha. 
+* **1Password** (de pago, muy popular en empresas)
+* **LastPass** (comercial, versión gratuita limitada)
+* **Dashlane** (comercial)
+* **NordPass** (comercial)
+
+---
+
+#### ⭐ Reseña breve de Bitwarden (el que usarás con tus alumnos)
+
+**Bitwarden** es un gestor de contraseñas **open-source**, seguro y multiplataforma.
+Su **versión gratuita** ofrece:
+
+* Almacenamiento ilimitado de contraseñas.
+* Sincronización entre todos tus dispositivos.
+* Extensiones para todos los navegadores.
+* Aplicaciones para Windows, Linux, macOS, Android e iOS.
+* Autocompletado de credenciales.
+* Generador de contraseñas seguras.
+* Cifrado extremo a extremo (solo el usuario puede ver sus datos).
+* Posibilidad de compartir contraseñas con una persona.
+
+Es ideal para alumnos porque es:
+
+* **Sencillo de usar**
+* **Seguro por diseño**
+* **Gratis sin limitaciones importantes**
+* **Transparente** (código abierto)
+* Perfecto para introducir conceptos de **seguridad digital** y **buenas prácticas**.
+
+
+> En este momento realiza la práctica 502: Uso de bitwarden
+
+### **2.4. Biometría**
 
 * Huellas, reconocimiento facial, iris.
 * Ventajas e inconvenientes.
 * Riesgos y falsificación.
 
-### **2.4. Elevación de privilegios**
+### **2.5. Elevación de privilegios**
 
 * Linux:
 
