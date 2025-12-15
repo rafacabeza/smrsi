@@ -279,16 +279,27 @@ En los sistemas que usan usuario/contraseña se deben definir unas políticas de
   * Linux: `/etc/shadow`, hashes SHA512.
   * Windows: SAM, NTLM.
 
-### **2.2. Autenticación multifactor**
+### **2.2. Autenticación de doble factor (A2F/2FA) y multifactor (MFA)**
+
+Las contraseñas tienen algunos inconvenientes:
+
+- Son fáciles de robar (fishing, keyloggers, malware)
+- Funcionan en cualqueir sitio.
+- Se reutilizan, algo que es un problema de seguridad.
+- Son difíciles de recordar
+- Son problemáticas y costosas de mantener: se olvidan, las cuentas se bloquean, requieren mantenimiento, ...
+
+Para superar estos problemas aparecen un conjunto de mecanismos o sistemas más se
 
 * Tarjetas inteligentes (SmartCards), por ejemplo DNI electrónico.
 * Tokens FIDO2 y U2F.
 * Aplicaciones OTP (Google Authenticator, etc.).
 
 > [OJO! FIDO2 y smartcards también porían usarse para login directo](https://www.youtube.com/watch?v=L32w9WAEqRs)
-> [Login con Yubikey](https://www.youtube.com/watch?v=3IBS4v8U7_M)
-> [Login con smartcard](https://www.youtube.com/watch?v=x9brdyDGmNo)
 > 
+> [Login con Yubikey](https://www.youtube.com/watch?v=3IBS4v8U7_M)
+> 
+> [Login con smartcard](https://www.youtube.com/watch?v=x9brdyDGmNo) 
 
 
 ### **2.3. Gestores de contraseñas**
