@@ -553,6 +553,7 @@ Sí, porque:
   * Exposición de buckets públicos.
   * Claves en repositorios Git.
 
+<!-- 
 # 🧪 TÍTULOS DE PRÁCTICAS (para VMs)
 
 ##Bloque 1 — Seguridad del equipo y del arranque
@@ -593,4 +594,4 @@ Sí, porque:
 ##Bloque 7 — Seguridad en la nube
 
 18. Creación de una instancia en la nube con políticas de seguridad básicas.
-19. Simulación de errores comunes en la nube (bucket público, claves expuestas).
+19. Simulación de errores comunes en la nube (bucket público, claves expuestas). -->
