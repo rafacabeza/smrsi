@@ -21,9 +21,9 @@ Hasta ahora hemos visto cuestiones de seguridad pasiva: qué hacemos para minimi
 
 Ahora vamos a analizar la seguridad activa: qué hacemos para evitar que los ataques se produzcan o que tengan éxito.
 
-## **1. Protección del equipo**
+##1. Protección del equipo
 
-### **1.1. Seguridad física**
+###1.1. Seguridad física
 
 La **seguridad física** constituye la primera barrera de defensa en cualquier sistema informático. De poco sirve disponer de antivirus, cortafuegos o cifrado si un atacante puede acceder físicamente al equipo, retirar su disco, arrancarlo desde un USB o manipular el hardware. Es un aspecto frecuentemente olvidado, pero **fundamental para la integridad, disponibilidad y confidencialidad** de los sistemas.
 
@@ -40,7 +40,7 @@ La **seguridad física** constituye la primera barrera de defensa en cualquier s
 
 * Riesgos si se vulnera la seguridad física: acceso al disco, modificación del arranque, reseteo de contraseñas, falta de continuidad en el servicio.
 
-### **1.2. BIOS/UEFI**
+###1.2. BIOS/UEFI
 
 * Definición: Funciones principales y diferencias entre BIOS y UEFI.
   * Es el firmware que ayuda a manejar la placa base y sus componentes
@@ -55,7 +55,7 @@ La **seguridad física** constituye la primera barrera de defensa en cualquier s
   * Contraseña de acceso al firmware, para cambiar la configuración.
   * Contraseña de arranque (Boot password), para iniciar la máquina.
 
-### **1.3. Boot Manager / Gestión del arranque**
+###1.3. Boot Manager / Gestión del arranque
 
 * El gestor de arranque es el primer software que se ejecuta. 
   * Determina dónde está el sistema operativo que se inicia.
@@ -94,7 +94,7 @@ La **seguridad física** constituye la primera barrera de defensa en cualquier s
 > NOTA.
 > Estamos hablando de niveles de seguridad altos. Como veis, no es habitual encontrar todas estas contraseñas en el arranque de ordenadores.
 
-### **1.4. Cifrado de particiones**
+###1.4. Cifrado de particiones
 
 * Cifrado completo de disco (FDE) vs. cifrado de archivos.
 
@@ -110,18 +110,16 @@ La **seguridad física** constituye la primera barrera de defensa en cualquier s
   * Relación con TPM. TPM permite arrancar sin poner la contraseña cada vez.
 * Limitaciones y buenas prácticas.
 
----
+## 2. Autenticación en el sistema operativo
 
-## **2. Autenticación en el sistema operativo**
-
-### **2.1. Usuario/Contraseña**
+### 2.1. Usuario/Contraseña
 
 #### Usuarios
 
 En Windows pueden existir **tres tipos principales de cuentas de usuario**, cada una con características, ventajas y limitaciones diferentes. 
 Desde el punto de vista de quién gestiona la existencia de un usuario y su autenticación:
 
-**1)  Cuenta Local**
+**1)  Cuenta Local
 
 Es la cuenta tradicional que existe **solo en ese equipo**. Es usada en Windows. Es el tipo de cuenta linux más generalizada.
 
@@ -143,9 +141,7 @@ Características
 * No permite sincronizar configuraciones, contraseñas u OneDrive.
 * Dificulta la recuperación de la contraseña si la olvidas.
 
----
-
-**2) Cuenta Microsoft (M365 Personal / Hotmail / Outlook)**
+2) Cuenta Microsoft (M365 Personal / Hotmail / Outlook)**
 
 Es una cuenta vinculada al **ecosistema Microsoft** que permite sincronización entre dispositivos.
 
@@ -170,7 +166,7 @@ Características
 * Requiere conexión ocasional a Internet.
 * Algunos usuarios prefieren no enlazar la cuenta del sistema con la nube.
 
-**3) Cuenta de Active Directory (AD) / Azure AD / Entra ID**
+3) Cuenta de Active Directory (AD) / Azure AD / Entra ID**
 
 Usada en **empresas, centros educativos y redes corporativas**. En linux existen sistemas similares basados en LDAP pero no los vamos a ver con detalle.
 
@@ -273,27 +269,42 @@ En los sistemas que usan usuario/contraseña se deben definir unas políticas de
   * cómo detectar phishing
 
 
-
-* Herramientas de hash:
-
-  * Linux: `/etc/shadow`, hashes SHA512.
-  * Windows: SAM, NTLM.
-
-### **2.2. Autenticación de doble factor (A2F/2FA) y multifactor (MFA)**
+Las contraseñas se basan en el principio **algo que sabes**. En este grupo podemos poner también los PIN, frases secretas y las (poco recomendadas) preguntas de seguridad.
 
 Las contraseñas tienen algunos inconvenientes:
 
 - Son fáciles de robar (fishing, keyloggers, malware)
-- Funcionan en cualqueir sitio.
+- Funcionan en cualqueir sitio. Si alguien la obtiene tiene acceso total.
 - Se reutilizan, algo que es un problema de seguridad.
-- Son difíciles de recordar
 - Son problemáticas y costosas de mantener: se olvidan, las cuentas se bloquean, requieren mantenimiento, ...
 
-Para superar estos problemas aparecen un conjunto de mecanismos o sistemas más se
+### 2.2. Autenticación de doble factor (A2F/2FA) y multifactor (MFA)
+
+Para superar estos problemas se añaden otros mecanismos basados en otros principios:
+
+- Algo que tienes
+  - Teléfono móvil (usar la proximidad vía NFC o Bluetooth)
+  - Llave física tipo FIDO2 o Yubikey
+  - Tarjeta inteligente
+  - Certificado digital
+  - Aplicación para contraseñas de un solo uso (OTP): Google Authenticator, Microsoft Authenticator, Authy, ...
+  - SMS/Email
+- Algo que eres, las principales:
+  - Huella dactilar
+  - Reconocimiento facial
+  - Reconocimiento de iris
+- Existen otros como: elgún lugar donde estás, algo que haces, ...
+
+Para superar estos problemas aparecen un conjunto de mecanismos o sistemas más seguros:
 
 * Tarjetas inteligentes (SmartCards), por ejemplo DNI electrónico.
-* Tokens FIDO2 y U2F.
+* Tokens FIDO2.
 * Aplicaciones OTP (Google Authenticator, etc.).
+
+Estos mecanismos se pueden usar de forma aislada o en combinación de dos o más de ellos:
+
+* A2F (o 2FA), autenticación de 2 factores a la combinación de dos de estos sistemas, muy habitualmente contraseña + uno de los citados recientemente. Por ejemplo contraseña + SMS.
+* MFA es una ampliación de A2F, permite que sean más de 2 los factores utilizados. O diversas combinaciónes de 2 o más. Estos sistemas se usan en aplicaciones críticas, banca, y sistemas empresariales.
 
 > [OJO! FIDO2 y smartcards también porían usarse para login directo](https://www.youtube.com/watch?v=L32w9WAEqRs)
 > 
@@ -301,8 +312,9 @@ Para superar estos problemas aparecen un conjunto de mecanismos o sistemas más 
 > 
 > [Login con smartcard](https://www.youtube.com/watch?v=x9brdyDGmNo) 
 
+Algunos de estos sistemas permiten una autenticación sin contraseña (*passwordless*), algo que a medio o largo plazo puede convertirse en el objetivo de muchos sistemas informáticos.
 
-### **2.3. Gestores de contraseñas**
+### 2.3. Gestores de contraseñas
 
 #### 🔐 ¿Qué es un gestor de contraseñas?
 
@@ -312,8 +324,6 @@ Un **gestor de contraseñas** es una herramienta que:
 * Te permite usar **contraseñas largas y únicas** sin tener que recordarlas.
 * Autocompleta credenciales en páginas web y aplicaciones.
 * Sincroniza tus claves entre dispositivos de forma segura.
-
----
 
 #### 🛡️ ¿Por qué es recomendable su uso en 2025?
 
@@ -327,8 +337,6 @@ Hoy es más necesario que nunca porque:
 
 En resumen: **seguridad, comodidad y prevención de ataques**.
 
----
-
 #### 📋 Ejemplos de gestores de contraseñas (los más usados en 2025)
 
 * **Bitwarden** (open-source, gratuito y muy completo)
@@ -337,8 +345,6 @@ En resumen: **seguridad, comodidad y prevención de ataques**.
 * **LastPass** (comercial, versión gratuita limitada)
 * **Dashlane** (comercial)
 * **NordPass** (comercial)
-
----
 
 #### ⭐ Reseña breve de Bitwarden (el que usarás con tus alumnos)
 
@@ -362,16 +368,93 @@ Es ideal para alumnos porque es:
 * **Transparente** (código abierto)
 * Perfecto para introducir conceptos de **seguridad digital** y **buenas prácticas**.
 
-
 > En este momento realiza la práctica 502: Uso de bitwarden
 
-### **2.4. Biometría**
+### 2.4. Windows Hello
 
-* Huellas, reconocimiento facial, iris.
-* Ventajas e inconvenientes.
-* Riesgos y falsificación.
+#### ¿Qué es Windows Hello?
 
-### **2.5. Elevación de privilegios**
+**Windows Hello** es el sistema de **autenticación segura de Windows 10 y 11** que permite iniciar sesión **sin usar directamente la contraseña**, utilizando métodos más seguros y cómodos.
+
+Forma parte de la estrategia **passwordless** de Microsoft.
+
+#### Métodos de autenticación que incluye
+
+##### 🔢 **PIN**
+
+* Código numérico (o alfanumérico).
+* **Vinculado solo a ese dispositivo**.
+* No funciona en otros equipos, aunque lo roben.
+
+✔ Más seguro que una contraseña reutilizada.
+
+##### 🧬 **Biometría**
+
+* **Huella dactilar**
+* **Reconocimiento facial**
+
+✔ La biometría **no se envía a Microsoft**.
+✔ Se almacena de forma segura en el dispositivo (TPM).
+
+##### 🔑 **Llaves de seguridad (FIDO2)**
+
+* USB, NFC o Bluetooth.
+* Autenticación fuerte y resistente al phishing.
+
+#### ¿Cómo funciona internamente? (simplificado)
+
+* Windows Hello usa **criptografía asimétrica**.
+* La **clave privada** se guarda en el **TPM** del equipo.
+* La clave **nunca sale del dispositivo**.
+* El servidor solo valida la **clave pública**.
+
+👉 No se transmite contraseña.
+
+#### ¿Es realmente más seguro?
+
+Sí, porque:
+
+* El PIN no sirve fuera del dispositivo.
+* La biometría no se puede “copiar” fácilmente.
+* Es resistente a:
+
+  * Phishing
+  * Keyloggers
+  * Ataques de fuerza bruta remotos
+
+#### Requisitos
+
+* Windows 10/11
+* TPM 2.0 (chip habitual en equipos modernos)
+* Para biometría: hardware compatible (sensor o cámara IR)
+
+#### ¿Qué pasa si falla?
+
+* Siempre existe **método de respaldo**:
+
+  * Contraseña tradicional
+  * Cuenta Microsoft
+  * Recuperación del sistema
+
+#### Ventajas
+
+✔ Más seguro que contraseñas
+✔ Más cómodo para el usuario
+✔ Integrado en Windows
+✔ Compatible con MFA
+✔ Base para passwordless
+
+#### Limitaciones
+
+⚠️ Requiere hardware compatible
+⚠️ No sustituye MFA en servicios externos
+⚠️ Está pensado para cuentas Microsoft, en cuentas locales avanzadas tiene menos opciones.
+
+#### Ejemplo práctico típico
+
+> **Windows Hello = PIN + biometría + TPM**
+
+### 2.5. Elevación de privilegios
 
 * Linux:
 
@@ -383,9 +466,7 @@ Es ideal para alumnos porque es:
   * Run as administrator.
 * Control de privilegios mínimos.
 
----
-
-## **3. Cuotas de disco**
+## 3. Cuotas de disco
 
 * Objetivo: prevenir abusos de almacenamiento.
 * Tipos:
@@ -398,15 +479,14 @@ Es ideal para alumnos porque es:
   * Windows: Administrador de almacenamiento.
   * Linux: sistema de cuotas (`edquota`, `quotas`, `repquota`).
 
----
-
-## **4. Actualizaciones y parches**
+## 4. Actualizaciones y parches
 
 * Tipos de actualizaciones:
 
   * De seguridad.
   * Correctivas.
   * Evolutivas.
+
 * Windows Update: características y WSUS.
 * Linux: apt/yum/dnf — repositorios seguros.
 * Riesgos de no actualizar.
@@ -415,9 +495,7 @@ Es ideal para alumnos porque es:
   * Patching escalonado.
   * Ventanas de mantenimiento.
 
----
-
-## **5. Antivirus y antimalware**
+## 5. Antivirus y antimalware
 
 * Funcionamiento:
 
@@ -429,9 +507,7 @@ Es ideal para alumnos porque es:
 * Analizadores online (VirusTotal).
 * Antimalware en Linux.
 
----
-
-## **6. Monitorización y auditoría**
+## 6. Monitorización y auditoría
 
 * Registros del sistema:
 
@@ -444,9 +520,7 @@ Es ideal para alumnos porque es:
   * Windows Defender Application Control.
 * Tareas programadas y servicios sospechosos.
 
----
-
-## **7. Seguridad en aplicaciones web**
+## 7. Seguridad en aplicaciones web
 
 * Riesgos comunes:
 
@@ -462,9 +536,7 @@ Es ideal para alumnos porque es:
 * Seguridad en sesiones y cookies.
 * Concepto de hardening de aplicaciones web.
 
----
-
-## **8. Cloud Computing y seguridad**
+## 8. Cloud Computing y seguridad
 
 * Tipos de despliegues:
 
@@ -481,46 +553,44 @@ Es ideal para alumnos porque es:
   * Exposición de buckets públicos.
   * Claves en repositorios Git.
 
----
+# 🧪 TÍTULOS DE PRÁCTICAS (para VMs)
 
-# 🧪 **TÍTULOS DE PRÁCTICAS (para VMs)**
+##Bloque 1 — Seguridad del equipo y del arranque
 
-## **Bloque 1 — Seguridad del equipo y del arranque**
+1. Configuración segura de BIOS/UEFI y arranque protegido.
+2. Habilitación del Secure Boot y TPM en máquinas virtuales.
+3. Cifrado completo de disco con LUKS en Linux.
+4. Cifrado del disco del sistema con BitLocker en Windows.
+5. Protección de GRUB con contraseña y verificación de la cadena de arranque.
 
-1. **Configuración segura de BIOS/UEFI y arranque protegido.**
-2. **Habilitación del Secure Boot y TPM en máquinas virtuales.**
-3. **Cifrado completo de disco con LUKS en Linux.**
-4. **Cifrado del disco del sistema con BitLocker en Windows.**
-5. **Protección de GRUB con contraseña y verificación de la cadena de arranque.**
+##Bloque 2 — Autenticación y control de acceso
 
-## **Bloque 2 — Autenticación y control de acceso**
+6. Configuración de políticas de contraseñas en Linux y Windows.
+7. Implementación de doble factor en Windows/Linux (autenticación OTP).
+8. Gestión de privilegios y sudoers en Linux.
+9. Gestión de permisos NTFS y UAC avanzado en Windows.
 
-6. **Configuración de políticas de contraseñas en Linux y Windows.**
-7. **Implementación de doble factor en Windows/Linux (autenticación OTP).**
-8. **Gestión de privilegios y sudoers en Linux.**
-9. **Gestión de permisos NTFS y UAC avanzado en Windows.**
+##Bloque 3 — Administración de recursos
 
-## **Bloque 3 — Administración de recursos**
+10. Implementación de cuotas de disco en Linux.
+11. Configuración de cuotas de almacenamiento en Windows.
 
-10. **Implementación de cuotas de disco en Linux.**
-11. **Configuración de cuotas de almacenamiento en Windows.**
+##Bloque 4 — Actualización y endurecimiento del SO
 
-## **Bloque 4 — Actualización y endurecimiento del SO**
+12. Actualización, rollback y auditoría de parches (Windows + Linux).
+13. Hardening básico del sistema operativo (Windows y Linux).
 
-12. **Actualización, rollback y auditoría de parches (Windows + Linux).**
-13. **Hardening básico del sistema operativo (Windows y Linux).**
+##Bloque 5 — Protección contra malware
 
-## **Bloque 5 — Protección contra malware**
+14. Análisis de malware simulado con un antivirus y herramientas online.
+15. Monitorización de eventos sospechosos con el visor de eventos y journald.
 
-14. **Análisis de malware simulado con un antivirus y herramientas online.**
-15. **Monitorización de eventos sospechosos con el visor de eventos y journald.**
+##Bloque 6 — Seguridad en aplicaciones web
 
-## **Bloque 6 — Seguridad en aplicaciones web**
+16. Instalación de un servidor web vulnerable y explotación controlada (DVWA / Mutillidae).
+17. Aplicación de medidas de hardening en Apache/Nginx.
 
-16. **Instalación de un servidor web vulnerable y explotación controlada (DVWA / Mutillidae).**
-17. **Aplicación de medidas de hardening en Apache/Nginx.**
+##Bloque 7 — Seguridad en la nube
 
-## **Bloque 7 — Seguridad en la nube**
-
-18. **Creación de una instancia en la nube con políticas de seguridad básicas.**
-19. **Simulación de errores comunes en la nube (bucket público, claves expuestas).**
+18. Creación de una instancia en la nube con políticas de seguridad básicas.
+19. Simulación de errores comunes en la nube (bucket público, claves expuestas).
