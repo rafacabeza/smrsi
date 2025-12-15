@@ -1,5 +1,6 @@
-# 🐧🔐 **503. Gestión de privilegios y `sudoers` en Linux**
+# 🐧🔐 **503. Elevación de privilegios.
 
+**PARTE 1 Gestión de privilegios y `sudoers` en Linux****
 
 ## 📘 **Explicación teórica**
 
@@ -282,3 +283,235 @@ Observar:
 2. ¿Qué ventaja aporta `sudo` frente a `su`?
 3. ¿Qué riesgos tiene `NOPASSWD`?
 4. ¿Cómo aplicarías mínimos privilegios en una empresa?
+
+
+
+**PARTE 2 Elevación de privilegios en Windows 11**
+
+
+## Módulo
+
+Seguridad Informática – RA03
+Seguridad activa: Sistema operativo y aplicaciones
+
+## Duración
+
+60–90 minutos
+
+## Entorno
+
+* Máquina virtual **Windows 11**
+* Una cuenta **Administrador**
+* Una cuenta **Usuario estándar**
+
+---
+
+## 🎯 Objetivos de aprendizaje
+
+El alumnado será capaz de:
+
+* Comprender el modelo de privilegios de Windows
+* Diferenciar usuario estándar y administrador
+* Usar correctamente **UAC**
+* Ejecutar aplicaciones con privilegios elevados
+* Entender los riesgos de una mala gestión de privilegios
+
+---
+
+## 📘 Conceptos previos (breve)
+
+* **Usuario estándar**: permisos limitados
+* **Administrador**: puede modificar el sistema
+* **UAC (User Account Control)**: mecanismo que solicita confirmación para elevar privilegios
+* **Elevación** ≠ iniciar sesión como administrador permanentemente
+
+---
+
+## 🧪 GUION DE PRÁCTICA
+
+---
+
+## 📌 1. Identificar el tipo de usuario
+
+1️⃣ Iniciar sesión con un usuario estándar
+2️⃣ Abrir **Configuración → Cuentas → Tu información**
+
+Comprobar:
+
+* Tipo de cuenta: **Usuario estándar**
+
+Abrir **Símbolo del sistema**:
+
+```cmd
+whoami
+```
+
+---
+
+## 📌 2. Intentar una acción administrativa (sin elevación)
+
+Como usuario estándar:
+
+1️⃣ Intentar instalar un programa
+2️⃣ O abrir:
+
+```
+C:\Windows\System32
+```
+
+3️⃣ Intentar crear un archivo
+
+Resultado esperado:
+
+* ❌ Acceso denegado
+* ❌ Solicitud de credenciales de administrador
+
+---
+
+## 📌 3. Introducción al UAC
+
+### ¿Qué es UAC?
+
+* Un sistema de **control de elevación**
+* Reduce el riesgo de malware
+* Obliga a confirmar acciones críticas
+
+📌 Ventana típica:
+
+* Fondo oscurecido
+* Mensaje: *¿Desea permitir que esta aplicación realice cambios?*
+
+---
+
+## 📌 4. Ejecutar una aplicación como administrador
+
+1️⃣ Buscar **Bloc de notas**
+2️⃣ Clic derecho → **Ejecutar como administrador**
+3️⃣ Confirmar UAC (usuario admin o credenciales)
+
+4️⃣ Desde el Bloc de notas:
+
+* Abrir archivo:
+
+  ```
+  C:\Windows\System32\drivers\etc\hosts
+  ```
+
+✔ Ahora sí permite guardar cambios
+
+---
+
+## 📌 5. Comparar ejecución normal vs elevada
+
+Abrir dos **Símbolos del sistema**:
+
+* Uno normal
+* Otro con **Ejecutar como administrador**
+
+En ambos:
+
+```cmd
+net session
+```
+
+Resultados:
+
+* Normal → ❌ Acceso denegado
+* Elevado → ✔ Información mostrada
+
+---
+
+## 📌 6. Comprobar pertenencia a grupos
+
+En consola elevada:
+
+```cmd
+whoami /groups
+```
+
+Observar:
+
+* `BUILTIN\Administrators`
+* `Mandatory Label\High Mandatory Level`
+
+Comparar con consola no elevada:
+
+* `Medium Mandatory Level`
+
+---
+
+## 📌 7. Crear usuario estándar y administrador
+
+Desde cuenta admin:
+
+1️⃣ **Configuración → Cuentas → Otros usuarios**
+2️⃣ Crear:
+
+* Usuario estándar: `alumno_std`
+* Usuario administrador: `alumno_admin`
+
+3️⃣ Cerrar sesión y probar:
+
+* Qué puede y no puede hacer cada uno
+
+---
+
+## 📌 8. Desactivar y activar UAC (solo demostración)
+
+⚠️ **Solo con fines educativos**
+
+1️⃣ Panel de control
+2️⃣ Cuentas de usuario
+3️⃣ Cambiar configuración de Control de cuentas de usuario
+
+Mover el control a:
+
+* Nivel más bajo (menos seguro)
+* Volver a nivel recomendado
+
+Reflexión:
+
+* ¿Qué riesgos aparecen al desactivar UAC?
+
+---
+
+## 📌 9. Buenas prácticas de elevación de privilegios
+
+✔ Usar usuario estándar para tareas diarias
+✔ Elevar privilegios solo cuando sea necesario
+✔ No desactivar UAC
+✔ Verificar el origen del software
+✔ Cerrar aplicaciones elevadas tras su uso
+
+---
+
+## 📌 10. Evidencias a entregar
+
+📄 Capturas o respuestas:
+
+1. Diferencia entre consola normal y elevada
+2. Captura del aviso de UAC
+3. Resultado de `whoami /groups`
+4. Acceso denegado vs permitido
+5. Reflexión sobre UAC
+
+---
+
+## ❓ Preguntas de reflexión
+
+1. ¿Por qué Windows no ejecuta todo como administrador?
+2. ¿Qué ventaja aporta UAC frente a iniciar sesión como admin?
+3. ¿Qué pasaría si el malware se ejecuta con privilegios elevados?
+4. ¿Qué similitudes hay con `sudo` en Linux?
+
+---
+
+## 🔄 Comparativa rápida Linux vs Windows
+
+| Linux                 | Windows                  |
+| --------------------- | ------------------------ |
+| sudo                  | UAC                      |
+| root                  | Administrador            |
+| Elevación por comando | Elevación por aplicación |
+| Logs en auth.log      | Eventos de seguridad     |
+
