@@ -468,16 +468,139 @@ Sí, porque:
 
 ## 3. Cuotas de disco
 
-* Objetivo: prevenir abusos de almacenamiento.
-* Tipos:
+Las **cuotas de disco** son un mecanismo del sistema operativo que permite:
 
-  * Cuotas por usuario.
-  * Cuotas por grupo.
-  * Cuotas blandas y duras.
-* Implementación:
+* **Limitar el espacio de almacenamiento** que puede usar:
 
-  * Windows: Administrador de almacenamiento.
-  * Linux: sistema de cuotas (`edquota`, `quotas`, `repquota`).
+  * un usuario
+  * o un grupo
+* **Controlar el uso de recursos**
+* **Evitar abusos** (llenar el disco, DoS local)
+* **Planificar capacidad**
+
+👉 Son una medida de **seguridad activa** y **administración preventiva**.
+
+---
+
+### ¿Qué problemas evitan?
+
+Sin cuotas:
+
+* Un usuario puede llenar el disco
+* El sistema deja de funcionar correctamente
+* Servicios críticos fallan (logs, bases de datos)
+
+Con cuotas:
+
+* Se limita el impacto
+* Se detectan usos anómalos
+* Se protege la estabilidad del sistema
+
+### Tipos de cuotas
+
+* Cuotas por usuario. Limita el espacio que puede usar cada usuario
+
+* Cuotas por grupo. Controla el uso compartido por un grupo
+
+* Tipos de límite
+  * Soft limit. Si se pasa hay un aviso y un margen temporal para bajar del límite. Tras ese periodo de gracia se bloque el almacenamiento si se no se habajado del límite.
+  * Hard limit. Bloque total, es como si el disco estuviera lleno.
+
+### Cuotas de disco en Linux
+
+#### Sistemas de archivos compatibles
+
+* ext4
+* xfs
+* btrfs (con mecanismos propios)
+* NFS (según configuración)
+
+#### Herramientas habituales
+
+* `quota`
+* `edquota`
+* `repquota`
+* `quotacheck`
+
+#### Funcionamiento básico (ext4)
+
+1. Activar cuotas en el sistema de archivos
+1. Definir cuotas por usuario o grupo
+1. Monitorizar el uso
+1. Aplicar límites
+
+#### Ejemplo de uso típico en Linux
+
+* Servidores multiusuario
+* Centros educativos
+* Hosting compartido
+* Servidores de archivos (Samba, NFS)
+
+#### Ventajas en Linux
+
+✔ Muy granular
+✔ Por usuario y grupo
+✔ Integrable con scripts
+✔ Visible por consola
+
+### 5️⃣ Cuotas de disco en Windows
+
+#### NTFS Disk Quotas
+
+Windows ofrece cuotas en volúmenes **NTFS**:
+
+* Por usuario
+* A nivel de volumen
+* Integrado en el sistema
+
+#### Opciones disponibles
+
+* Limitar espacio por usuario
+* Mostrar advertencias
+* Registrar eventos en el visor
+* Bloquear escritura al superar el límite
+
+#### Configuración
+
+Desde:
+
+* Explorador → Propiedades del disco → Cuota
+* Directivas de grupo (entornos profesionales)
+* PowerShell
+
+#### Limitaciones en Windows
+
+❌ No por carpeta
+❌ No por grupo (nativo)
+❌ No por aplicación
+
+> NOTA: En Windows Server las posibilidades son más completas
+
+### 6️⃣ Comparativa Linux vs Windows
+
+| Característica          | Linux                | Windows  |
+| ----------------------- | -------------------- | -------- |
+| Cuotas por usuario      | ✔                    | ✔        |
+| Cuotas por grupo        | ✔                    | ❌        |
+| Soft / Hard limit       | ✔                    | ❌        |
+| Por sistema de archivos | ✔                    | ✔ (NTFS) |
+| Gestión por consola     | ✔                    | ✔        |
+| Gestión gráfica         | ❌ / ✔ (según distro) | ✔        |
+
+---
+
+### 7️⃣ Relación con Seguridad Informática
+
+Las cuotas ayudan a:
+
+* Prevenir **denegación de servicio local**
+* Controlar usuarios maliciosos o descuidados
+* Detectar uso anómalo de disco
+* Proteger logs y servicios
+
+👉 Son una **medida preventiva**, no reactiva.
+
+
 
 ## 4. Actualizaciones y parches
 
