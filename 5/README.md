@@ -21,9 +21,9 @@ Hasta ahora hemos visto cuestiones de seguridad pasiva: qué hacemos para minimi
 
 Ahora vamos a analizar la seguridad activa: qué hacemos para evitar que los ataques se produzcan o que tengan éxito.
 
-##1. Protección del equipo
+## 1. Protección del equipo
 
-###1.1. Seguridad física
+### 1.1. Seguridad física
 
 La **seguridad física** constituye la primera barrera de defensa en cualquier sistema informático. De poco sirve disponer de antivirus, cortafuegos o cifrado si un atacante puede acceder físicamente al equipo, retirar su disco, arrancarlo desde un USB o manipular el hardware. Es un aspecto frecuentemente olvidado, pero **fundamental para la integridad, disponibilidad y confidencialidad** de los sistemas.
 
@@ -40,7 +40,7 @@ La **seguridad física** constituye la primera barrera de defensa en cualquier s
 
 * Riesgos si se vulnera la seguridad física: acceso al disco, modificación del arranque, reseteo de contraseñas, falta de continuidad en el servicio.
 
-###1.2. BIOS/UEFI
+### 1.2. BIOS/UEFI
 
 * Definición: Funciones principales y diferencias entre BIOS y UEFI.
   * Es el firmware que ayuda a manejar la placa base y sus componentes
@@ -55,7 +55,7 @@ La **seguridad física** constituye la primera barrera de defensa en cualquier s
   * Contraseña de acceso al firmware, para cambiar la configuración.
   * Contraseña de arranque (Boot password), para iniciar la máquina.
 
-###1.3. Boot Manager / Gestión del arranque
+### 1.3. Boot Manager / Gestión del arranque
 
 * El gestor de arranque es el primer software que se ejecuta. 
   * Determina dónde está el sistema operativo que se inicia.
@@ -94,7 +94,7 @@ La **seguridad física** constituye la primera barrera de defensa en cualquier s
 > NOTA.
 > Estamos hablando de niveles de seguridad altos. Como veis, no es habitual encontrar todas estas contraseñas en el arranque de ordenadores.
 
-###1.4. Cifrado de particiones
+### 1.4. Cifrado de particiones
 
 * Cifrado completo de disco (FDE) vs. cifrado de archivos.
 
