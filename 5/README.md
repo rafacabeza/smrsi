@@ -604,19 +604,277 @@ Las cuotas ayudan a:
 
 ## 4. Actualizaciones y parches
 
-* Tipos de actualizaciones:
+Las **actualizaciones y parches** son fundamentales para garantizar la **seguridad, estabilidad y evolución** de los sistemas operativos y aplicaciones. Permiten corregir errores, cerrar vulnerabilidades y añadir nuevas funcionalidades.
 
-  * De seguridad.
-  * Correctivas.
-  * Evolutivas.
+### Diferencia entre parche y actualización
 
-* Windows Update: características y WSUS.
-* Linux: apt/yum/dnf — repositorios seguros.
-* Riesgos de no actualizar.
-* Estrategias:
+#### 🔧 Parche
 
-  * Patching escalonado.
-  * Ventanas de mantenimiento.
+Un **parche** es una **corrección puntual** que se aplica para solucionar un **problema concreto**, normalmente relacionado con:
+
+* Seguridad (vulnerabilidades, CVE)
+* Errores críticos de funcionamiento
+
+**Características:**
+
+* Alcance limitado
+* Suele ser urgente
+* No introduce nuevas funcionalidades
+
+📌 Ejemplo:
+Un parche que corrige una vulnerabilidad crítica identificada como `CVE-2024-XXXX`.
+
+---
+
+#### 🔄 Actualización
+
+Una **actualización** es un concepto **más amplio**, que puede incluir:
+
+* Uno o varios parches
+* Correcciones de errores
+* Mejoras de rendimiento
+* Cambios funcionales o evolutivos
+
+**Características:**
+
+* Puede ser acumulativa
+* Puede ser periódica
+* No siempre es urgente
+
+📌 Ejemplo:
+Una actualización mensual de Windows que incluye varios parches de seguridad y correcciones.
+
+---
+
+#### 📝 Resumen comparativo
+
+| Concepto | Parche                           | Actualización                   |
+| -------- | -------------------------------- | ------------------------------- |
+| Alcance  | Puntual                          | General                         |
+| Objetivo | Corregir un problema concreto    | Mejorar, corregir o evolucionar |
+| Urgencia | Alta (normalmente)               | Variable                        |
+| Relación | Forma parte de una actualización | Puede incluir varios parches    |
+
+---
+
+#### 📌 Idea clave
+
+> **Todo parche es una actualización, pero no toda actualización es solo un parche.**
+
+
+### 4.1 Tipos de actualizaciones
+
+#### 🔐 Actualizaciones de seguridad
+
+* Corrigen **vulnerabilidades de seguridad** conocidas.
+* Están asociadas normalmente a identificadores **CVE (Common Vulnerabilities and Exposures)**.
+* Evitan:
+
+  * Ejecución de código malicioso
+  * Escalada de privilegios
+  * Robo de información
+* Deben aplicarse **con prioridad**.
+
+🔎 **CVE (Common Vulnerabilities and Exposures)**
+Es un sistema estándar internacional que asigna un **identificador único** a cada vulnerabilidad conocida (por ejemplo: `CVE-2024-12345`).
+El CVE **describe el problema**, mientras que la **actualización aplica la solución**.
+
+---
+
+#### 🛠️ Actualizaciones correctivas
+
+* Corrigen **errores de funcionamiento** (bugs).
+* Mejoran la estabilidad y compatibilidad.
+* No siempre están relacionadas con la seguridad.
+
+---
+
+#### 🚀 Actualizaciones evolutivas
+
+* Introducen **nuevas funciones** o cambios importantes.
+* Pueden modificar:
+
+  * Interfaz
+  * Comportamiento del sistema
+* Requieren planificación y pruebas previas.
+
+---
+
+### 4.2 Windows Update y WSUS
+
+#### Windows Update
+
+Es el sistema automático de Microsoft para:
+
+* Actualizaciones de seguridad
+* Correcciones
+* Controladores
+* Actualizaciones acumulativas
+
+Permite:
+
+* Actualización automática
+* Pausar actualizaciones
+* Configurar horarios activos
+
+---
+
+#### WSUS (Windows Server Update Services)
+
+**WSUS** es un servicio que permite **gestionar de forma centralizada las actualizaciones de Windows** desde un servidor interno.
+
+##### Características principales
+
+* Centraliza las actualizaciones en la red
+* Permite **aprobar o rechazar parches**
+* Reduce el consumo de ancho de banda
+* Facilita el **patching escalonado**
+
+##### Funcionamiento básico
+
+1. El servidor WSUS descarga las actualizaciones desde Microsoft
+2. El administrador decide cuáles aprobar
+3. Los equipos cliente descargan las actualizaciones desde WSUS
+
+##### Uso típico
+
+* Empresas
+* Centros educativos
+* Redes con muchos equipos
+
+---
+
+### 4.3 Linux: gestión de actualizaciones
+
+En Linux, las actualizaciones se gestionan mediante **gestores de paquetes** que trabajan con **repositorios seguros** firmados digitalmente.
+
+#### Gestores de paquetes más comunes
+
+* `apt` → Debian, Ubuntu
+* `yum` / `dnf` → Red Hat, CentOS, Rocky, Fedora
+
+---
+
+#### Repositorios seguros
+
+* Los paquetes provienen de repositorios oficiales
+* Se verifica:
+  * Autenticidad
+  * Integridad
+* Uso de **firmas GPG**
+
+---
+
+#### Diferencia entre `apt update` y `apt upgrade`
+
+##### `apt update`
+
+* **No actualiza ningún paquete**
+* Descarga la **lista de versiones disponibles**
+* Actualiza la información local del sistema
+
+👉 Es como “consultar qué hay nuevo”.
+
+```bash
+sudo apt update
+```
+
+---
+
+##### `apt upgrade`
+
+* Instala las **nuevas versiones** de los paquetes ya instalados
+* No elimina paquetes ni instala dependencias nuevas
+* Aplica:
+
+  * Parches de seguridad
+  * Correcciones
+  * Actualizaciones menores
+
+👉 Es como “aplicar lo disponible”.
+
+```bash
+sudo apt upgrade
+```
+
+---
+
+📌 **Orden correcto habitual**:
+
+```bash
+sudo apt update
+sudo apt upgrade
+```
+
+---
+
+### 4.4 Actualización de versión en Linux
+
+Actualizar de una versión a otra (por ejemplo, **Ubuntu 22.04 → 24.04**) es una **actualización evolutiva**.
+
+#### Características
+
+* Cambia la versión del sistema operativo
+* Puede afectar:
+
+  * Configuraciones
+  * Servicios
+  * Compatibilidad de software
+
+---
+
+#### Método habitual (Ubuntu / Debian-based)
+
+```bash
+sudo do-release-upgrade
+```
+
+##### Requisitos
+
+* Sistema completamente actualizado
+* Copia de seguridad previa
+* Espacio suficiente en disco
+
+---
+
+#### Buenas prácticas
+
+* Leer las notas de la versión
+* Probar antes en entorno de pruebas
+* Evitar hacerlo en sistemas críticos sin planificación
+
+---
+
+### 4.5 Riesgos de no actualizar
+
+No mantener los sistemas actualizados implica:
+
+* Vulnerabilidades conocidas sin corregir
+* Mayor riesgo de malware y ransomware
+* Inestabilidad del sistema
+* Incumplimiento de políticas de seguridad
+* Exposición a ataques que explotan CVE antiguos
+
+---
+
+### 4.6 Estrategias de actualización
+
+#### 🔁 Patching escalonado
+
+* Aplicar parches por fases:
+
+  1. Pruebas
+  2. Usuarios piloto
+  3. Producción
+* Reduce fallos generalizados
+
+---
+
+#### ⏱️ Ventanas de mantenimiento
+
+* Periodos planificados para actualizar
+* Fuera del horario laboral
+* Minimiza impacto en usuarios
 
 ## 5. Antivirus y antimalware
 
@@ -643,7 +901,7 @@ Las cuotas ayudan a:
   * Windows Defender Application Control.
 * Tareas programadas y servicios sospechosos.
 
-## 7. Seguridad en aplicaciones web
+<!-- ## 7. Seguridad en aplicaciones web
 
 * Riesgos comunes:
 
@@ -657,9 +915,9 @@ Las cuotas ayudan a:
   * Permisos mínimos.
 * HTTPS y certificados.
 * Seguridad en sesiones y cookies.
-* Concepto de hardening de aplicaciones web.
+* Concepto de hardening de aplicaciones web. -->
 
-## 8. Cloud Computing y seguridad
+<!-- ## 8. Cloud Computing y seguridad
 
 * Tipos de despliegues:
 
@@ -674,7 +932,7 @@ Las cuotas ayudan a:
 * Riesgos frecuentes:
 
   * Exposición de buckets públicos.
-  * Claves en repositorios Git.
+  * Claves en repositorios Git. -->
 
 <!-- 
 # 🧪 TÍTULOS DE PRÁCTICAS (para VMs)

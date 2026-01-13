@@ -181,6 +181,8 @@ Lista de prácticas:
 
 ## Cuestionario de repaso
 
+Busca en estos apuntes y en las prácticas que hemos hecho. No te recomiendo usar ninguna IA. También puedes probar en tus prácticas para ver cómo va.
+
 1. ¿Cuál es el beneficio del RAID-0?
 2. ¿Cuál es el beneficio del RAID-1?
 3. ¿Hay algún sistema que consiga los mismos beneficios de RAID-0 y RAID-1?
