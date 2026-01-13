@@ -14,8 +14,8 @@
 
 4. Enumera y explica los tres tipos de actualizaciones que existen.
 <!-- 5. ¿Qué tipo de actualización está relacionada directamente con la seguridad del sistema? -->
-6. Pon un ejemplo de una actualización correctiva.
-7. ¿Por qué las actualizaciones evolutivas requieren más planificación que las demás?
+5. Pon un ejemplo de una actualización correctiva.
+6. ¿Por qué las actualizaciones evolutivas requieren más planificación que las demás?
 
 ---
 
