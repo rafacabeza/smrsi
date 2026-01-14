@@ -878,15 +878,260 @@ No mantener los sistemas actualizados implica:
 
 ## 5. Antivirus y antimalware
 
-* Funcionamiento:
+### 5.1. Funcionamiento de los antivirus y antimalware
 
-  * Firmas.
-  * Heurística.
-  * Detección basada en comportamiento.
-* Tipos de malware.
-* Limitaciones de los antivirus.
-* Analizadores online (VirusTotal).
-* Antimalware en Linux.
+#### Detección por firmas
+
+* Se basa en **comparar archivos** con una **base de datos de firmas** conocidas.
+* Cada malware tiene una “huella” única.
+* Requiere **actualizaciones frecuentes**.
+
+✅ Ventajas:
+
+* Muy precisa para malware conocido.
+
+❌ Inconvenientes:
+
+* No detecta malware nuevo (zero-day).
+* Ineficaz frente a malware modificado u ofuscado.
+
+---
+
+#### Detección heurística
+
+* Analiza el **código o estructura** de un archivo buscando comportamientos sospechosos.
+* No depende de firmas exactas.
+
+Ejemplos:
+
+* Código que intenta ocultarse.
+* Uso sospechoso de llamadas al sistema.
+* Modificación de procesos del sistema.
+
+✅ Ventajas:
+
+* Detecta malware desconocido.
+
+❌ Inconvenientes:
+
+* Puede producir **falsos positivos**.
+
+---
+
+#### Detección basada en comportamiento
+
+* Supervisa el **comportamiento del sistema en tiempo real**.
+* Analiza lo que hace un programa mientras se ejecuta.
+
+Ejemplos:
+
+* Cifrar muchos archivos rápidamente (ransomware).
+* Enviar datos sin permiso.
+* Crear procesos ocultos.
+
+✅ Ventajas:
+
+* Muy eficaz contra malware moderno.
+
+❌ Inconvenientes:
+
+* Consume más recursos.
+* Requiere supervisión constante.
+
+> Los antivirus actuales se basan principalmente en firmas, apoyadas por heurística y detección basada en comportamiento para mejorar la protección frente a malware nuevo y avanzado.
+
+---
+
+### 5.2. Tipos de malware
+
+| Tipo          | Descripción                       |
+| ------------- | --------------------------------- |
+| Virus         | Se adjunta a otros archivos       |
+| Gusano (Worm) | Se propaga automáticamente        |
+| Troyano       | Se disfraza de software legítimo  |
+| Ransomware    | Cifra archivos y pide rescate     |
+| Spyware       | Espía al usuario                  |
+| Adware        | Muestra publicidad intrusiva      |
+| Rootkit       | Oculta procesos maliciosos        |
+| Keylogger     | Registra pulsaciones del teclado  |
+| Botnet        | Convierte el equipo en un “zombi” |
+
+---
+
+### 3️⃣5.3. Limitaciones de los antivirus
+
+* ❌ No ofrecen protección total.
+* ❌ No detectan todas las amenazas nuevas.
+* ❌ Pueden generar falsos positivos.
+* ❌ No protegen frente a:
+
+  * Ingeniería social.
+  * Contraseñas débiles.
+  * Errores del usuario.
+* ❌ Dependencia de actualizaciones.
+
+👉 **La seguridad no es solo software, es comportamiento.**
+
+---
+
+### 5.4. Analizadores online (VirusTotal)
+
+#### ¿Qué es VirusTotal?
+
+* Servicio online que analiza archivos, URLs y direcciones IP.
+* Usa **decenas de motores antivirus** simultáneamente.
+
+#### ¿Qué permite?
+
+* Subir un archivo sospechoso.
+* Analizar enlaces web.
+* Ver detecciones por distintos antivirus.
+
+⚠️ Advertencias:
+
+* El archivo subido puede compartirse con empresas de seguridad.
+* No subir información sensible o privada.
+
+---
+
+## 5.5. Antimalware en Linux
+
+### ¿Es necesario antivirus en Linux?
+
+* Linux es menos atacado, pero **no inmune**.
+* Muy útil en:
+
+  * Servidores.
+  * Equipos que comparten archivos con Windows.
+
+#### Herramientas habituales
+
+* **ClamAV**
+* **rkhunter**
+* **chkrootkit**
+
+Características:
+
+* Normalmente **no residentes** (escaneos manuales).
+* Muy usados en servidores.
+
+---
+
+### 5.6. Antimalware en Android
+
+#### Riesgos habituales
+
+* Instalación de APKs fuera de Google Play.
+* Permisos excesivos.
+* Aplicaciones falsas.
+* Phishing por SMS o WhatsApp.
+
+### Protección
+
+* Google Play Protect (integrado).
+* Antivirus de terceros (Avast, Bitdefender, etc.).
+
+Limitación:
+
+* No sustituyen al sentido común del usuario.
+
+---
+
+## 5.7. Buenas prácticas (ordenador y móvil)
+
+Vamos a ver una serie de recomendaciones para los distintos sistemas:
+
+### 💻 En ordenador
+
+* Mantener sistema y software actualizados.
+* Usar antivirus activo y actualizado.
+* No ejecutar archivos de origen desconocido.
+* Usar cuentas sin privilegios de administrador.
+* Realizar copias de seguridad periódicas.
+
+### 📱 En móvil
+
+* Instalar apps solo desde tiendas oficiales.
+* Revisar permisos de las aplicaciones.
+* No pulsar enlaces sospechosos.
+* Mantener el sistema actualizado.
+* Activar bloqueo de pantalla y cifrado (en las versiones actuales es automático con el bloqueo de pantalla).
+
+---
+
+### Antivirus en linux
+
+* Linux de escritorio:
+
+  * Menor cuota de mercado.
+  * Modelo de permisos más restrictivo.
+  * Instalación de software mayoritariamente desde repositorios oficiales.
+
+* El usuario **no suele trabajar como administrador**.
+
+Por eso:
+
+* Rara vez se instala antivirus residente.
+* El riesgo es **mucho menor**, aunque **no inexistente**.
+
+* En servidores Linux **sí tiene sentido** usar antimalware (ClamAV, rkhunter), sobre todo:
+
+  * Para detectar malware Windows en servidores de archivos.
+  * Para auditoría y cumplimiento.
+
+> En Linux de escritorio, el antivirus no suele ser necesario si se siguen buenas prácticas.
+
+---
+
+### Windows 11 y Windows Defender
+
+* Windows Defender (Microsoft Defender Antivirus):
+
+  * Está integrado en el sistema.
+  * Se actualiza automáticamente.
+  * Tiene:
+
+    * Detección por firmas.
+    * Heurística.
+    * Detección por comportamiento.
+    * Protección en tiempo real.
+
+* Su impacto en rendimiento es bajo.
+
+* En pruebas independientes suele obtener resultados muy competitivos.
+
+* Para un usuario doméstico:
+
+  * **Es suficiente en la mayoría de los casos**.
+  * No es necesario instalar antivirus de terceros.
+
+> Más antivirus no implica más seguridad pero sí puede ralentizar el sistema.
+
+---
+
+### Android: Play Protect + buenas prácticas
+
+* Android:
+
+  * Modelo sandbox por aplicación.
+  * Control de permisos.
+  * Play Protect activo por defecto.
+
+Play Protect:
+
+* No es un antivirus tradicional.
+* Actúa como **filtro y sistema de reputación**.
+
+Si se combina con:
+
+* Instalación solo desde Google Play.
+* Revisión de permisos.
+* No pulsar enlaces sospechosos.
+
+👉 El nivel de seguridad es **suficiente para la mayoría de usuarios**.
+
+> En Android, el mayor riesgo no es el malware técnico, sino la ingeniería social. El peligro está en aquello que instalamos en nuestro móvil y en posibles ataques de phishing. CUIDADO!
+
 
 ## 6. Monitorización y auditoría
 
