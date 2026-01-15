@@ -1132,6 +1132,21 @@ Si se combina con:
 
 > En Android, el mayor riesgo no es el malware técnico, sino la ingeniería social. El peligro está en aquello que instalamos en nuestro móvil y en posibles ataques de phishing. CUIDADO!
 
+## 5.8 Breve historia del malware
+
+El concepto de malware (software malicioso) surge casi al mismo tiempo que los primeros sistemas informáticos conectados.
+
+* **Años 70**: Aparece *Creeper* (1971), considerado el primer programa autorreplicante. No era dañino y mostraba el mensaje *“I’m the creeper, catch me if you can”*. Como respuesta se creó *Reaper*, el primer antivirus.
+
+* **Años 80**: Surgen los primeros **virus informáticos** reales, como *Brain* (1986), que infectaba disquetes. En esta época los virus se propagaban principalmente por intercambio físico de soportes.
+
+* **Años 90**: Con la expansión de Internet y el correo electrónico, el malware se populariza. Aparecen **gusanos** y **virus de macro**, como *Melissa* (1999), capaces de propagarse rápidamente por email.
+
+* **Años 2000**: El malware se profesionaliza. Aparecen **troyanos**, **spyware** y **botnets**, orientados al robo de información, envío de spam o control remoto de equipos. Ejemplos destacados son *ILOVEYOU* (2000) y *Conficker* (2008).
+
+* **Años 2010**: El objetivo principal pasa a ser económico. Se populariza el **ransomware**, como *WannaCry* (2017), y el malware dirigido a empresas e infraestructuras críticas.
+
+* **Actualidad**: El malware es cada vez más sofisticado, usa técnicas de **evasión**, **cifrado**, **ingeniería social** y, en algunos casos, **inteligencia artificial**. Se dirige tanto a ordenadores como a móviles, servidores y dispositivos IoT.
 
 ## 6. Monitorización y auditoría
 
