@@ -1,8 +1,8 @@
 # Ejemplos de uso de wireshark
 
-## 🧪 Ejemplo 1: Ver tráfico HTTP en claro (sniffing básico)
+## Ejemplo 1: Ver tráfico HTTP en claro (sniffing básico)
 
-🎯 **Objetivo**: Comprobar que HTTP no cifra la información.
+**Objetivo**: Comprobar que HTTP no cifra la información.
 
 **Pasos**
 
@@ -26,13 +26,13 @@
 * URLs completas
 * Posibles cookies
 
-💡 **Conclusión didáctica**: cualquiera que escuche la red puede ver el contenido.
+**Conclusión didáctica**: cualquiera que escuche la red puede ver el contenido.
 
 ---
 
-## 🧪 Ejemplo 2: Comparar HTTP vs HTTPS
+## Ejemplo 2: Comparar HTTP vs HTTPS
 
-🎯 **Objetivo**: Ver la diferencia entre tráfico cifrado y no cifrado.
+**Objetivo**: Ver la diferencia entre tráfico cifrado y no cifrado.
 
 **Pasos**
 
@@ -63,13 +63,13 @@
 * HTTP: contenido legible
 * HTTPS: solo handshake TLS y datos cifrados
 
-💡 **Conclusión**: HTTPS protege la privacidad.
+**Conclusión**: HTTPS protege la privacidad.
 
 ---
 
-## 🧪 Ejemplo 4: Capturar tráfico de localhost (127.0.0.1)
+## Ejemplo 4: Capturar tráfico de localhost (127.0.0.1)
 
-🎯 **Objetivo**: Ver comunicaciones internas del sistema.
+**Objetivo**: Ver comunicaciones internas del sistema.
 
 **Preparación**
 
@@ -94,13 +94,13 @@
 * Comunicación cliente-servidor local
 * Peticiones HTTP completas
 
-💡 **Mensaje clave**: incluso el tráfico local puede ser interceptado.
+**Mensaje clave**: incluso el tráfico local puede ser interceptado.
 
 ---
 
-## 🧪 Ejemplo 4: Ver una contraseña en texto plano (FTP o HTTP)
+## Ejemplo 4: Ver una contraseña en texto plano (FTP o HTTP)
 
-🎯 **Objetivo**: Demostrar un riesgo real.
+**Objetivo**: Demostrar un riesgo real.
 
 **Opción A – FTP**
 
@@ -116,7 +116,7 @@
    ftp
    ```
 
-👉 Buscar comandos `USER` y `PASS`
+Buscar comandos `USER` y `PASS`
 
 > Para hacer este apartado: instala servidor FTP
 > sudo apt install vsftpd
@@ -143,9 +143,9 @@
 
 ---
 
-## 🧪 Ejemplo 5: Resolución DNS
+## Ejemplo 5: Resolución DNS
 
-🎯 **Objetivo**: Entender cómo funciona DNS.
+**Objetivo**: Entender cómo funciona DNS.
 
 **Pasos**
 
@@ -162,13 +162,13 @@
 * Nombres de dominio solicitados
 * IPs devueltas
 
-💡 **Conclusión**: aunque uses HTTPS, el DNS puede revelar a qué webs accedes.
+**Conclusión**: aunque uses HTTPS, el DNS puede revelar a qué webs accedes.
 
 ---
 
-## 🧪 Ejemplo 6: Analizar un ping (ICMP)
+## Ejemplo 6: Analizar un ping (ICMP)
 
-🎯 **Objetivo**: Ver tráfico de red básico.
+**Objetivo**: Ver tráfico de red básico.
 
 **Pasos**
 
@@ -189,13 +189,13 @@
 * Echo reply
 * Tiempos de respuesta
 
-💡 Ideal para empezar antes de protocolos más complejos.
+Ideal para empezar antes de protocolos más complejos.
 
 ---
 
-## 🧪 Ejemplo 7: Escaneo con nmap + Wireshark (muy bueno 🔥)
+## Ejemplo 7: Escaneo con nmap + Wireshark
 
-🎯 **Objetivo**: Ver cómo se comporta un escaneo de puertos.
+**Objetivo**: Ver cómo se comporta un escaneo de puertos.
 
 **Pasos**
 
@@ -216,13 +216,13 @@
 * Paquetes SYN
 * Respuestas SYN-ACK / RST
 
-💡 **Conclusión**: los escaneos son detectables.
+**Conclusión**: los escaneos son detectables.
 
 ---
 
-## 🧪 Ejemplo 8: Tráfico cifrado de una VPN
+## Ejemplo 8: Tráfico cifrado de una VPN
 
-🎯 **Objetivo**: Ver cómo la VPN protege el tráfico.
+**Objetivo**: Ver cómo la VPN protege el tráfico.
 
 **Pasos**
 
@@ -240,20 +240,4 @@
 * Sin VPN: múltiples IPs destino
 * Con VPN: casi todo va a una sola IP
 
-💡 **Mensaje clave**: la VPN oculta el destino real del tráfico.
-
----
-
-## 📌 Consejo para evaluación
-
-Puedes pedirles:
-
-* Captura + **captura de pantalla**
-* Explicación de **qué datos se ven**
-* Conclusión sobre **privacidad y seguridad**
-
-Si quieres, en el próximo mensaje te preparo:
-
-* ✅ **Una tabla resumen para apuntes**
-* ✅ **Un guion de práctica evaluable**
-* ✅ **Ejercicios con solución para IFC201**
+**Mensaje clave**: la VPN oculta el destino real del tráfico.
