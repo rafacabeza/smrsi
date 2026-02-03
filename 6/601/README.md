@@ -73,7 +73,9 @@
 
 **Preparación**
 
-* Levantar un servidor local (Apache, Node, PHP…) en puerto 81.
+* Levantar un servidor local (Apache, Node, PHP…) en puerto 8000.
+
+> NOTA: vamos a obviar el 8000, lo dejamos en el puerto 80
 
 **Pasos**
 
@@ -81,12 +83,12 @@
 2. Acceder a:
 
    ```
-   http://127.0.0.1:81
+   http://127.0.0.1:8000
    ```
 3. Filtro:
 
    ```
-   ip.addr == 127.0.0.1 && tcp.port == 81
+   ip.addr == 127.0.0.1 && tcp.port == 8000
    ```
 
 **Qué deben observar**
