@@ -11,7 +11,7 @@
 3. Acceder a una web **HTTP** (no HTTPS), por ejemplo:
 
    ```
-   http://neverssl.com
+   http://httpforever.com/
    ```
 4. Aplicar filtro:
 
@@ -36,23 +36,12 @@
 
 **Pasos**
 
-1. Acceder primero a:
+1. Accede a:
 
    ```
-   http://example.com
-   ```
-2. Luego a:
-
-   ```
-   https://example.com
+   https://www.xataka.com/
    ```
 3. Filtros:
-
-   ```
-   http
-   ```
-
-   y después:
 
    ```
    tls
@@ -67,15 +56,13 @@
 
 ---
 
-## Ejemplo 4: Capturar tráfico de localhost (127.0.0.1)
+## Ejemplo 3: Capturar tráfico de localhost (127.0.0.1)
 
 **Objetivo**: Ver comunicaciones internas del sistema.
 
 **Preparación**
 
-* Levantar un servidor local (Apache, Node, PHP…) en puerto 8000.
-
-> NOTA: vamos a obviar el 8000, lo dejamos en el puerto 80
+* Levantar un servidor local (Apache, Node, PHP…) en puerto 80.
 
 **Pasos**
 
@@ -83,12 +70,12 @@
 2. Acceder a:
 
    ```
-   http://127.0.0.1:8000
+   http://127.0.0.1
    ```
 3. Filtro:
 
    ```
-   ip.addr == 127.0.0.1 && tcp.port == 8000
+   ip.addr == 127.0.0.1 && tcp.port == 80
    ```
 
 **Qué deben observar**
