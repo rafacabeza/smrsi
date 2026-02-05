@@ -182,7 +182,7 @@ Ideal para empezar antes de protocolos más complejos.
 
 ---
 
-## Ejemplo 7: Escaneo con nmap + Wireshark
+## Ejemplo 7: Escaneo con nmap + Wireshark (Haz esto al final de la práctica 602)
 
 **Objetivo**: Ver cómo se comporta un escaneo de puertos.
 
