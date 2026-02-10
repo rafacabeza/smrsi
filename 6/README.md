@@ -207,9 +207,9 @@ Aunque alguien capture los paquetes, **no podrá leer su contenido**.
 
 Protocolos habituales:
 
-* OpenVPN
-* WireGuard
-* IPsec
+* IPsec (1995). Surge como parte de IPv6 pero se adoptó también para IPv4. Sobre todo se usa para la conexión de dos redes entre sí como si fueran una única red.
+* OpenVPN. Creada en 2001. Es de código a bierto y muy utilizada. Solución más flexible que la anterior y multiplataforma. Suele usarse para conectar un equipo a una red remota.
+* WireGuard. Creada en 2015. Solución mínima, más rápida y moderna. Menos configurable pero de más alto rendimiento. Suele usarse para conectar un equipo a una red remota.
 
 ---
 
