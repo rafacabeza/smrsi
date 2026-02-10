@@ -165,26 +165,61 @@ sudo nano /etc/openvpn/server.conf
 Contenido completo del fichero:
 
 ```conf
+# Puerto en el que escucha el servidor OpenVPN (por defecto 1194)
 port 1194
+
+# Protocolo de transporte utilizado (UDP es el más habitual)
 proto udp
+
+# Tipo de interfaz virtual:
+# tun = nivel 3 (IP)
 dev tun
 
+# Certificado de la Autoridad Certificadora (CA)
+# Sirve para validar clientes y servidor
 ca ca.crt
+
+# Certificado público del servidor VPN
 cert servidor.crt
+
+# Clave privada del servidor (debe mantenerse secreta)
 key servidor.key
+
+# Parámetros Diffie-Hellman para el intercambio seguro de claves
 dh dh.pem
+
+# Clave adicional para proteger el canal TLS
+# El 0 indica que este fichero se usa en el servidor
 tls-auth ta.key 0
 
+# Red virtual que asigna el servidor a los clientes VPN
+# El servidor suele usar la IP 10.8.0.1
 server 10.8.0.0 255.255.255.0
+
+# Ruta que el servidor envía ("push") a los clientes
+# Permite acceder a la red interna 192.168.100.0/24 a través de la VPN
 push "route 192.168.100.0 255.255.255.0"
 
+# Mantiene la conexión activa:
+# ping cada 10 segundos, reinicia tras 120 sin respuesta
 keepalive 10 120
+
+# Algoritmo de cifrado simétrico para los datos
 cipher AES-256-CBC
+
+# Algoritmo de autenticación e integridad
 auth SHA256
+
+# Mantiene la clave cargada aunque se reinicie la conexión
 persist-key
+
+# Mantiene la interfaz tun activa entre reconexiones
 persist-tun
 
+# Fichero donde se guarda el estado del servidor VPN
 status openvpn-status.log
+
+# Nivel de detalle de los logs (3 = normal, adecuado para prácticas)
 verb 3
 ```
 
@@ -272,23 +307,51 @@ nano cliente1.ovpn
 Contenido del fichero:
 
 ```conf
+# Indica que esta configuración es para un cliente
 client
+
+# Tipo de interfaz virtual (debe coincidir con el servidor)
 dev tun
+
+# Protocolo de transporte (debe coincidir con el servidor)
 proto udp
+
+# Dirección IP o nombre del servidor VPN y su puerto
 remote IP_SERVIDOR_VPN 1194
 
+# Reintenta la conexión indefinidamente si falla
 resolv-retry infinite
+
+# No fija un puerto local (útil en clientes detrás de NAT)
 nobind
+
+# Mantiene la clave cargada entre reconexiones
 persist-key
+
+# Mantiene la interfaz tun activa entre reconexiones
 persist-tun
 
+# Certificado de la Autoridad Certificadora
+# Permite verificar que el servidor es legítimo
 ca ca.crt
+
+# Certificado público del cliente
 cert cliente1.crt
+
+# Clave privada del cliente (no debe compartirse)
 key cliente1.key
+
+# Clave TLS adicional para proteger el canal de control
+# El 1 indica que este fichero se usa en el cliente
 tls-auth ta.key 1
 
+# Algoritmo de cifrado (debe coincidir con el servidor)
 cipher AES-256-CBC
+
+# Algoritmo de autenticación (debe coincidir con el servidor)
 auth SHA256
+
+# Nivel de detalle de los logs
 verb 3
 ```
 
