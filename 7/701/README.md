@@ -1,16 +1,18 @@
-# 🧩 Ejercicio 1: Análisis de una sanción real (Investigación en Internet)
+# Ejercicios protección de datos
 
-## 🎯 Objetivo
+## 🧩 Ejercicio 1: Análisis de una sanción real (Investigación en Internet)
+
+### 🎯 Objetivo
 
 Reconocer la aplicación práctica del RGPD y analizar las consecuencias de su incumplimiento.
 
-## 📝 Enunciado
+### 📝 Enunciado
 
 Accede a la página web de la **Agencia Española de Protección de Datos (AEPD)** y busca una sanción impuesta en el último año.
 
 👉 Apartado recomendado: “Resoluciones” o “Sanciones”.
 
-## 📌 Tareas a realizar
+### 📌 Tareas a realizar
 
 1. Indica:
 
@@ -30,7 +32,7 @@ Accede a la página web de la **Agencia Española de Protección de Datos (AEPD)
    * ¿Hubo daño reputacional?
    * ¿Crees que la multa es proporcional?
 
-## 📊 Criterios de evaluación (10 puntos)
+### 📊 Criterios de evaluación (10 puntos)
 
 * Identificación correcta de la infracción (3 puntos)
 * Explicación clara del incumplimiento (3 puntos)
@@ -39,13 +41,13 @@ Accede a la página web de la **Agencia Española de Protección de Datos (AEPD)
 
 ---
 
-# 🧩 Ejercicio 2: Caso práctico simulado
+## 🧩 Ejercicio 2: Caso práctico simulado
 
-## 🎯 Objetivo
+### 🎯 Objetivo
 
 Aplicar los principios del RGPD a una situación realista.
 
-## 📝 Caso
+### 📝 Caso
 
 Un centro educativo crea una web donde publica:
 
@@ -54,7 +56,7 @@ Un centro educativo crea una web donde publica:
 * Un formulario de contacto que recoge nombre, email y teléfono.
 * Instala cookies sin informar al usuario.
 
-## ❓ Preguntas
+### ❓ Preguntas
 
 1. ¿Qué normativa se aplica en este caso?
 2. ¿Se necesita consentimiento para publicar las fotos?
@@ -64,13 +66,13 @@ Un centro educativo crea una web donde publica:
 
 ---
 
-# 🧩 Ejercicio 3: Auditoría básica de una página web
+## 🧩 Ejercicio 3: Auditoría básica de una página web
 
-## 🎯 Objetivo
+### 🎯 Objetivo
 
 Detectar posibles incumplimientos legales en una web real.
 
-## 📝 Instrucciones
+### 📝 Instrucciones
 
 Elige cualquier página web (preferiblemente una pequeña empresa o comercio local) y analiza:
 
@@ -80,7 +82,7 @@ Elige cualquier página web (preferiblemente una pequeña empresa o comercio loc
 4. ¿Incluye aviso legal con datos del responsable?
 5. ¿Explica los derechos ARSULIPO (Acceso, Rectificación, Supresión, Limitación, Portabilidad y Oposición)?
 
-## 📄 Entrega
+### 📄 Entrega
 
 Realiza un pequeño informe (1-2 páginas) indicando:
 
@@ -91,7 +93,7 @@ Realiza un pequeño informe (1-2 páginas) indicando:
 
 ---
 
-# 🧠 Ejercicio tipo debate (dinámico en clase)
+## 🧠 Ejercicio tipo debate (dinámico en clase)
 
 > “Una empresa pierde una base de datos con 50.000 correos electrónicos por no tenerla cifrada.”
 
