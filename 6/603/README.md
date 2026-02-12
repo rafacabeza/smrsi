@@ -363,9 +363,45 @@ Sustituir `IP_SERVIDOR_VPN` por la IP real del servidor VPN.
 
 En la máquina **Cliente VPN**:
 
+### 13.1 Transferir los archivos al cliente
+
+Debemos transferir la carpeta con los certificados del cliente (le hemos llamado cliente1) a la máquina cliente.
+
+Vamos a proponer una manera de hacerlo:
+
+Debemos tener el servicio ssh en el servidor, si no está debemos ejecurar:
+
+
+```bash
+#ejecutar en el servidor:
+apt install ssh
+```
+
+
+
+```bash
+#En el cliente
+scp -r usuario@IP_CLIENTE:~/cliente1 .
+```
+
+Sustituir:
+
+* `usuario` por el usuario del cliente
+* `IP_CLIENTE` por la IP del cliente
+
+Introducir la contraseña cuando se solicite.
+
+---
+
+### 13.2 Conectar desde el cliente VPN
+
+Desde la carpeta cliente1:
+
+
 ```bash
 sudo apt update
 sudo apt install openvpn -y
+cd ~/cliente1
 sudo openvpn --config cliente1.ovpn
 ```
 
